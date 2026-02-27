@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 :root{
-  --accent-color: #0d2a88;
+  --accent-color: #bd1913;
   --base-color: white;
   --text-color: #2E2B41;
   --input-color: #F3F0FF;
@@ -17,22 +17,28 @@ html{
 }
 body{
   min-height: 100vh;
-  background-image: url(../images/background.jpg);
+  background-image: url(../images/background2.png);
   background-size: cover;
-  background-position: right;
+  background-position: center;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
 }
 .wrapper{
   box-sizing: border-box;
-  background-color:rgba(255, 255, 255, 0.7);
-  height: 100vh;
-  width: max(40%, 600px);
-  padding: 10px;
-  border-radius: 0 20px 20px 0;
+  background-color:rgba(255, 255, 255, 0.9);
+  height: auto;
+  min-height: 500px;
+  width: 600px;
+  padding: 40px;
+  border-radius: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border: 5px solid rgba(197, 20, 20, 0.3);
 }
 h1{
   font-size: 3rem;
