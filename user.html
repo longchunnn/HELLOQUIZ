@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>HelloQuizz - Student Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/css/user.css"/>
+</head>
+<body>
+
+<!-- Sidebar -->
+<aside class="user-sidebar">
+    <div class="user-brand">
+        <div class="user-brand-icon">
+            <span class="material-icons-round">quiz</span>
+        </div>
+        <span class="user-brand-name">HelloQuizz</span>
+    </div>
+    <nav class="user-nav">
+        <a class="user-nav-link user-nav-link--active" href="#">
+            <span class="material-icons-round">dashboard</span> Dashboard
+        </a>
+        <a class="user-nav-link" href="#">
+            <span class="material-icons-round">assignment</span> My Exams
+        </a>
+        <a class="user-nav-link" href="#">
+            <span class="material-icons-round">history</span> Results
+        </a>
+        <a class="user-nav-link" href="#">
+            <span class="material-icons-round">leaderboard</span> Ranking
+        </a>
+        <a class="user-nav-link" href="#">
+            <span class="material-icons-round">settings</span> Settings
+        </a>
+    </nav>
+    <div class="user-support-card">
+        <div class="support-inner">
+            <p class="support-label">Need help?</p>
+            <p class="support-desc">Check our documentation or contact support.</p>
+            <button class="support-btn">Get Support</button>
+        </div>
+    </div>
+</aside>
+
+<!-- Main -->
+<main class="user-main">
+    <header class="user-header">
+        <div>
+            <h1 class="user-header__welcome-title">Welcome back, Alex! </h1>
+            <p class="user-header__welcome-sub">Ready for your next challenge today?</p>
+        </div>
+        <div class="user-header__actions">
+            <div class="header-search">
+                <span class="material-icons-round">search</span>
+                <input class="header-search__input" placeholder="Search exams..." type="text"/>
+            </div>
+            <button class="theme-btn" onclick="document.documentElement.classList.toggle('dark')">
+                <span class="material-icons-round">dark_mode</span>
+            </button>
+            <div class="header-profile">
+                <div class="header-profile__text">
+                    <p class="header-profile__name">Alex Rivera</p>
+                    <p class="header-profile__id">ID: 20240982</p>
+                </div>
+                <div class="header-profile__avatar">
+                    <img alt="User avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2cR1s8e-NMYnkEevgFhbR8XCwZLCF9Xc7EUv8FgJuRP7tjnG_blqVWaxyEg9D_0iWWjd5myiVadPo-1Hx0aUT-n0ssq2l3gPIsJBUtuODCU82cuNh2JO9mwr-GYTPVkRS1aaYAcIxZtRUKR2LdtjMfvT6ffeu-TVTndHhshwV0y_RnA9_6XSerD0WM5u_BRpQxiGNnV_2MxgG7EDsucxSYvCw6XPjoIL1jhL3Bi2FvxOvMoWN_lwAmeRiu6DFMIMwfqvCV6k9Y8MI"/>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- KPI Cards -->
+    <div class="kpi-grid">
+        <div class="kpi-card">
+            <div class="kpi-card__icon kpi-card__icon--blue">
+                <span class="material-icons-round">emoji_events</span>
+            </div>
+            <p class="kpi-label">Global Rank</p>
+            <p class="kpi-value">#124</p>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-card__icon kpi-card__icon--green">
+                <span class="material-icons-round">check_circle</span>
+            </div>
+            <p class="kpi-label">Exams Passed</p>
+            <p class="kpi-value">32</p>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-card__icon kpi-card__icon--orange">
+                <span class="material-icons-round">pending_actions</span>
+            </div>
+            <p class="kpi-label">Pending Exams</p>
+            <p class="kpi-value">04</p>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-card__icon kpi-card__icon--purple">
+                <span class="material-icons-round">grade</span>
+            </div>
+            <p class="kpi-label">Avg. Score</p>
+            <p class="kpi-value">88%</p>
+        </div>
+    </div>
+
+    <!-- Upcoming Exams -->
+    <div class="section">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="material-icons-round">campaign</span>
+                Upcoming Midterms &amp; Finals
+            </h2>
+            <a class="section-link" href="#">View Calendar</a>
+        </div>
+        <div class="exam-grid">
+            <!-- Waiting -->
+            <div class="exam-card">
+                <div class="exam-card__header">
+                    <span class="exam-tag">Midterm</span>
+                    <span class="material-icons-round exam-schedule-icon">schedule</span>
+                </div>
+                <h3 class="exam-title">Advanced Mathematics II</h3>
+                <p class="exam-schedule">Scheduled for Oct 24, 09:00 AM</p>
+                <div class="exam-footer">
+                    <div class="exam-duration">
+                        <span class="material-icons-round">timer</span> 120 Mins
+                    </div>
+                    <button class="btn-wait">Wait</button>
+                </div>
+            </div>
+            <!-- Live -->
+            <div class="exam-card exam-card--live">
+                <div class="live-indicator">
+                    <span class="live-dot-outer">
+                        <span class="live-dot-ping"></span>
+                        <span class="live-dot-solid"></span>
+                    </span>
+                </div>
+                <div class="exam-card__header">
+                    <span class="exam-tag">Final Exam</span>
+                </div>
+                <h3 class="exam-title">Modern Economics</h3>
+                <p class="exam-schedule exam-schedule--live">LIVE NOW</p>
+                <div class="exam-footer">
+                    <div class="exam-duration">
+                        <span class="material-icons-round">timer</span> 90 Mins
+                    </div>
+                    <button class="btn-start-now">Start Now</button>
+                </div>
+            </div>
+            <!-- Waiting 2 -->
+            <div class="exam-card">
+                <div class="exam-card__header">
+                    <span class="exam-tag">Midterm</span>
+                </div>
+                <h3 class="exam-title">Principles of Design</h3>
+                <p class="exam-schedule">Scheduled for Oct 26, 11:30 AM</p>
+                <div class="exam-footer">
+                    <div class="exam-duration">
+                        <span class="material-icons-round">timer</span> 60 Mins
+                    </div>
+                    <button class="btn-wait">Wait</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Practice Exams -->
+    <div class="section">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="material-icons-round">psychology</span>
+                Practice Exams
+            </h2>
+            <div class="filter-tabs">
+                <button class="filter-tab filter-tab--active">All</button>
+                <button class="filter-tab">History</button>
+                <button class="filter-tab">Science</button>
+                <button class="filter-tab">Languages</button>
+            </div>
+        </div>
+        <div class="practice-grid">
+            <div class="practice-card">
+                <div class="practice-icon practice-icon--orange">
+                    <span class="material-icons-round">science</span>
+                </div>
+                <h3 class="practice-title">Organic Chemistry</h3>
+                <p class="practice-desc">Practice quiz covering chemical bonding and functional groups.</p>
+                <div class="practice-footer">
+                    <span class="practice-badge">FREE</span>
+                    <button class="practice-start">Start <span class="material-icons-round">arrow_forward</span></button>
+                </div>
+            </div>
+            <div class="practice-card">
+                <div class="practice-icon practice-icon--blue">
+                    <span class="material-icons-round">history_edu</span>
+                </div>
+                <h3 class="practice-title">Ancient Civilizations</h3>
+                <p class="practice-desc">Test your knowledge on Mesopotamian and Egyptian culture.</p>
+                <div class="practice-footer">
+                    <span class="practice-badge">FREE</span>
+                    <button class="practice-start">Start <span class="material-icons-round">arrow_forward</span></button>
+                </div>
+            </div>
+            <div class="practice-card">
+                <div class="practice-icon practice-icon--purple">
+                    <span class="material-icons-round">language</span>
+                </div>
+                <h3 class="practice-title">Spanish Level B1</h3>
+                <p class="practice-desc">Comprehensive grammar and vocabulary practice test.</p>
+                <div class="practice-footer">
+                    <span class="practice-badge">FREE</span>
+                    <button class="practice-start">Start <span class="material-icons-round">arrow_forward</span></button>
+                </div>
+            </div>
+            <div class="practice-card">
+                <div class="practice-icon practice-icon--red">
+                    <span class="material-icons-round">code</span>
+                </div>
+                <h3 class="practice-title">Python Basics</h3>
+                <p class="practice-desc">Foundational concepts: loops, functions, and data structures.</p>
+                <div class="practice-footer">
+                    <span class="practice-badge">FREE</span>
+                    <button class="practice-start">Start <span class="material-icons-round">arrow_forward</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

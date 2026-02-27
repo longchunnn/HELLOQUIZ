@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Hello Quizz - Admin Management Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="assets/css/admin.css"/>
+</head>
+<body>
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar__logo">
+            <div class="sidebar__logo-icon">
+                <span class="material-icons-round">quiz</span>
+            </div>
+            <h1 class="sidebar__logo-text"><span>Hello</span>Quizz</h1>
+        </div>
+
+        <nav class="sidebar__nav">
+            <a class="nav-item nav-item--active" href="#">
+                <span class="material-icons-round">dashboard</span>
+                Overview
+            </a>
+            <a class="nav-item" href="#">
+                <span class="material-icons-round">assignment</span>
+                Manage Exams
+            </a>
+            <a class="nav-item" href="#">
+                <span class="material-icons-round">people</span>
+                Manage Users
+            </a>
+            <a class="nav-item" href="#">
+                <span class="material-icons-round">analytics</span>
+                Statistics
+            </a>
+            <a class="nav-item" href="#">
+                <span class="material-icons-round">settings</span>
+                Settings
+            </a>
+        </nav>
+
+        <div class="sidebar__footer">
+            <button class="theme-toggle" onclick="document.documentElement.classList.toggle('dark')">
+                <span class="theme-toggle__label">
+                    <span class="material-icons-round">contrast</span>
+                    Theme Mode
+                </span>
+                <span class="toggle-track">
+                    <span class="toggle-thumb"></span>
+                </span>
+            </button>
+
+            <div class="sidebar__user">
+                <div class="sidebar__user-inner">
+                    <img class="sidebar__avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBHrisHkiV9iX1b0eVUOu_BTte5taJ71o5HwNusUtt4psnPHwI8sblvIDoFEguWoO6-x9rh7gxFhd2cqbw1ijieLe60b4nDCQIZCI5zQ7e3ma7GcqUXEsN_-xJKec1PExWe8P5LvpCt2oYLFmYBPDmTnn2OYpCufhEONl4ZZ1C_pf8BHtlVZRD02uOf1MgSQE7oNJjIdAEB8fqsnZyEFlJIMnKbM6mGTxISX9E3WDea8TXmLM6mzMYhBxBiAj0RA1RMjSe-IPWkI95" alt="Admin Profile"/>
+                    <div>
+                        <p class="sidebar__user-name">Alex Richards</p>
+                        <p class="sidebar__user-role">Head Administrator</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+        <header class="page-header">
+            <div>
+                <h2 class="page-header__title">Admin Dashboard</h2>
+                <p class="page-header__subtitle">Welcome back, here's what's happening today.</p>
+            </div>
+            <div class="page-header__actions">
+                <div class="search-box">
+                    <span class="material-icons-round search-box__icon">search</span>
+                    <input class="search-box__input" placeholder="Search exams, students..." type="text"/>
+                </div>
+                <button class="btn-primary">
+                    <span class="material-icons-round">add</span>
+                    Create New Exam
+                </button>
+            </div>
+        </header>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-card__icon stat-card__icon--blue">
+                    <span class="material-icons-round">school</span>
+                </div>
+                <div>
+                    <p class="stat-card__label">Total Students</p>
+                    <h3 class="stat-card__value">12,842</h3>
+                    <p class="stat-card__trend stat-card__trend--up">
+                        <span class="material-icons-round">arrow_upward</span> 8.2% from last month
+                    </p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__icon stat-card__icon--red">
+                    <span class="material-icons-round">history_edu</span>
+                </div>
+                <div>
+                    <p class="stat-card__label">Exams Conducted</p>
+                    <h3 class="stat-card__value">452</h3>
+                    <p class="stat-card__trend stat-card__trend--up">
+                        <span class="material-icons-round">arrow_upward</span> 12.5% this week
+                    </p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__icon stat-card__icon--amber">
+                    <span class="material-icons-round">trending_up</span>
+                </div>
+                <div>
+                    <p class="stat-card__label">Average Score</p>
+                    <h3 class="stat-card__value">78.4%</h3>
+                    <p class="stat-card__trend stat-card__trend--neutral">Stable vs last week</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="content-grid">
+            <!-- Recent Exams Table -->
+            <div class="card">
+                <div class="card__header">
+                    <h3 class="card__title">Recent Exams</h3>
+                    <a class="card__link" href="#">View All</a>
+                </div>
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Exam Name</th>
+                                <th>Category</th>
+                                <th>Participants</th>
+                                <th>Status</th>
+                                <th style="text-align:right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="table__exam-cell">
+                                        <div class="table__exam-icon table__exam-icon--red">M</div>
+                                        <span class="table__exam-name">Mid-term Mathematics</span>
+                                    </div>
+                                </td>
+                                <td class="table__category">Science</td>
+                                <td>120/150</td>
+                                <td><span class="badge badge--live">Live</span></td>
+                                <td>
+                                    <div class="table__actions">
+                                        <button class="action-btn action-btn--edit"><span class="material-icons-round" style="font-size:1rem">edit</span></button>
+                                        <button class="action-btn action-btn--delete"><span class="material-icons-round" style="font-size:1rem">delete</span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="table__exam-cell">
+                                        <div class="table__exam-icon table__exam-icon--blue">P</div>
+                                        <span class="table__exam-name">Python Advanced Quiz</span>
+                                    </div>
+                                </td>
+                                <td class="table__category">Computer</td>
+                                <td>85/100</td>
+                                <td><span class="badge badge--ended">Ended</span></td>
+                                <td>
+                                    <div class="table__actions">
+                                        <button class="action-btn action-btn--edit"><span class="material-icons-round" style="font-size:1rem">edit</span></button>
+                                        <button class="action-btn action-btn--delete"><span class="material-icons-round" style="font-size:1rem">delete</span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="table__exam-cell">
+                                        <div class="table__exam-icon table__exam-icon--green">E</div>
+                                        <span class="table__exam-name">Entrance Literature</span>
+                                    </div>
+                                </td>
+                                <td class="table__category">General</td>
+                                <td>210/250</td>
+                                <td><span class="badge badge--draft">Draft</span></td>
+                                <td>
+                                    <div class="table__actions">
+                                        <button class="action-btn action-btn--edit"><span class="material-icons-round" style="font-size:1rem">edit</span></button>
+                                        <button class="action-btn action-btn--delete"><span class="material-icons-round" style="font-size:1rem">delete</span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="table__exam-cell">
+                                        <div class="table__exam-icon table__exam-icon--purple">H</div>
+                                        <span class="table__exam-name">History Trivia Final</span>
+                                    </div>
+                                </td>
+                                <td class="table__category">History</td>
+                                <td>45/50</td>
+                                <td><span class="badge badge--live">Live</span></td>
+                                <td>
+                                    <div class="table__actions">
+                                        <button class="action-btn action-btn--edit"><span class="material-icons-round" style="font-size:1rem">edit</span></button>
+                                        <button class="action-btn action-btn--delete"><span class="material-icons-round" style="font-size:1rem">delete</span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Chart -->
+            <div class="chart-card">
+                <div class="chart-card__header">
+                    <h3 class="chart-card__title">Participation</h3>
+                    <select class="chart-card__select">
+                        <option>Last 7 Days</option>
+                        <option>Last Month</option>
+                    </select>
+                </div>
+                <div class="chart-canvas-wrap">
+                    <canvas id="participationChart"></canvas>
+                </div>
+                <div class="chart-legend">
+                    <div class="chart-legend__item">
+                        <span class="chart-legend__label">
+                            <span class="chart-legend__dot chart-legend__dot--primary"></span>
+                            Peak Students
+                        </span>
+                        <span class="chart-legend__value">1,420</span>
+                    </div>
+                    <div class="chart-legend__item">
+                        <span class="chart-legend__label">
+                            <span class="chart-legend__dot chart-legend__dot--muted"></span>
+                            Avg. Daily
+                        </span>
+                        <span class="chart-legend__value">982</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom -->
+        <div class="bottom-grid">
+            <div class="promo-banner">
+                <div>
+                    <h4 class="promo-banner__title">Scale your exams with ease!</h4>
+                    <p class="promo-banner__desc">Professional tier tools are now available for all admins for a limited time.</p>
+                    <button class="promo-banner__btn">Learn More</button>
+                </div>
+                <div class="promo-banner__icon">
+                    <span class="material-icons-round">rocket_launch</span>
+                </div>
+            </div>
+
+            <div class="schedule-card">
+                <h4 class="schedule-card__title">Upcoming Schedule</h4>
+                <div class="schedule-list">
+                    <div class="schedule-item">
+                        <div class="schedule-item__date schedule-item__date--primary">
+                            <span>24</span>
+                            <span class="schedule-item__month">Oct</span>
+                        </div>
+                        <div>
+                            <p class="schedule-item__title">Physics Final Exam</p>
+                            <p class="schedule-item__time">09:00 AM - 11:30 AM</p>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-item__date schedule-item__date--muted">
+                            <span>25</span>
+                            <span class="schedule-item__month">Oct</span>
+                        </div>
+                        <div>
+                            <p class="schedule-item__title">Chemistry Mock</p>
+                            <p class="schedule-item__time">02:00 PM - 03:30 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<script src="assets/js/admin.js"></script>
+</body>
+</html>

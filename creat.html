@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Create &amp; Edit Exam - HelloQuizz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/css/creat.css"/>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar__inner">
+        <div class="navbar__brand">
+            <div class="navbar__brand-icon">
+                <span class="material-icons-round">quiz</span>
+            </div>
+            <a class="navbar__brand-text" href="#">Hello<span>Quizz</span></a>
+        </div>
+        <div class="navbar__actions">
+            <button class="theme-btn" onclick="document.documentElement.classList.toggle('dark')">
+                <span class="material-icons-round">dark_mode</span>
+            </button>
+            <div class="user-chip">
+                <img alt="Admin avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9kCmcHoN-urOJIqdkvPEzyK8Pz7Nyap1y1Url3y71gQ4m9P4XUCYE7h-o7U-6Mm16m8y6w2U9XDbTuP2W8HIwVGgAoH4Z1l4Ibz2vJC92SnNgPp_N8Wr9uXio3PjZM7DyUacVjVgBTRfglIbfE-R4zGxF9X7xrNB2rq9jjh8dO5Y9RmFHIvHTXlqR5gMAI9CBL2TUTopfVWc_SQP-xJrixB21Jc_ywqPNrKm4o2Rx8B0Cc97LKzUbWLKtPy3wcVlD8abtk3Z_B0rU"/>
+                <span class="user-chip__name">Admin Panel</span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<main class="page-main">
+    <div class="page-header">
+        <div>
+            <h2 class="page-header__title">Exam Configuration</h2>
+            <p class="page-header__subtitle">Design your quiz, set rules, and add questions.</p>
+        </div>
+        <div class="page-header__actions">
+            <button class="btn-outline">
+                <span class="material-icons-round">visibility</span> Preview
+            </button>
+            <button class="btn-primary">
+                <span class="material-icons-round">save</span> Publish Exam
+            </button>
+        </div>
+    </div>
+
+    <!-- General Info -->
+    <div class="form-section">
+        <h3 class="form-section__heading">
+            <span class="material-icons-round">description</span>
+            General Information
+        </h3>
+        <div class="form-grid">
+            <div class="form-field form-grid--full">
+                <label class="form-field__label">Exam Title</label>
+                <input class="form-field__input" placeholder="e.g., Advanced Mathematics Midterm 2024" type="text"/>
+            </div>
+            <div class="form-field form-grid--full">
+                <label class="form-field__label">Description</label>
+                <textarea class="form-field__textarea" placeholder="Provide instructions for the students..." rows="3"></textarea>
+            </div>
+            <div class="form-field">
+                <label class="form-field__label">Exam Type</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input checked name="exam_type" type="radio" value="free"/>
+                        <div class="radio-option__box">
+                            <span class="radio-option__label">Free Practice</span>
+                            <span class="radio-option__hint">No time limit</span>
+                        </div>
+                    </label>
+                    <label class="radio-option">
+                        <input name="exam_type" type="radio" value="timed"/>
+                        <div class="radio-option__box">
+                            <span class="radio-option__label">Timed Exam</span>
+                            <span class="radio-option__hint">Strict duration</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="form-field">
+                <label class="form-field__label">Duration (Minutes)</label>
+                <div class="input-icon-wrap">
+                    <span class="material-icons-round">schedule</span>
+                    <input class="form-field__input" placeholder="60" type="number"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Questions Builder -->
+    <div class="form-section">
+        <div class="questions-header">
+            <h3 class="form-section__heading" style="margin-bottom:0">
+                <span class="material-icons-round">ballot</span>
+                Questions Builder
+            </h3>
+            <button class="btn-upload">
+                <span class="material-icons-round">upload_file</span> Upload Excel
+            </button>
+        </div>
+
+        <div class="question-card">
+            <div class="question-card__header">
+                <span class="question-badge">Question #1</span>
+                <button class="question-delete-btn">
+                    <span class="material-icons-round">delete</span>
+                </button>
+            </div>
+            <div class="question-body">
+                <div>
+                    <textarea class="question-textarea" placeholder="Enter your question here..."></textarea>
+                    <div class="answer-grid">
+                        <div class="answer-option">
+                            <span class="answer-letter">A</span>
+                            <input class="answer-input" placeholder="Option A" type="text"/>
+                            <input class="answer-checkbox" type="checkbox"/>
+                        </div>
+                        <div class="answer-option">
+                            <span class="answer-letter">B</span>
+                            <input class="answer-input" placeholder="Option B" type="text"/>
+                            <input class="answer-checkbox" type="checkbox"/>
+                        </div>
+                        <div class="answer-option">
+                            <span class="answer-letter">C</span>
+                            <input class="answer-input" placeholder="Option C" type="text"/>
+                            <input class="answer-checkbox" checked type="checkbox"/>
+                        </div>
+                        <div class="answer-option">
+                            <span class="answer-letter">D</span>
+                            <input class="answer-input" placeholder="Option D" type="text"/>
+                            <input class="answer-checkbox" type="checkbox"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-drop">
+                    <span class="material-icons-round">add_photo_alternate</span>
+                    <span class="image-drop__label">Upload Image/SVG</span>
+                    <p class="image-drop__hint">Optional helper image</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn-add-question">
+            <span class="material-icons-round">add_circle</span>
+            Add Another Question
+        </button>
+    </div>
+
+    <div class="save-hint">
+        <span class="material-icons-round">info</span>
+        Changes are automatically saved as draft
+    </div>
+</main>
+
+<button class="fab">
+    <span class="material-icons-round">save</span>
+</button>
+
+</body>
+</html>

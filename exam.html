@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Exam Results - HelloQuizz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/css/exam.css"/>
+</head>
+<body>
+
+<div class="decorative-bg">
+    <div class="decorative-blob decorative-blob--tl"></div>
+    <div class="decorative-blob decorative-blob--mr"></div>
+    <span class="material-icons-outlined decorative-icon">lightbulb</span>
+    <span class="material-icons-outlined decorative-icon">help_outline</span>
+    <span class="material-icons-outlined decorative-icon">edit</span>
+    <span class="material-icons-outlined decorative-icon">check_circle_outline</span>
+</div>
+
+<nav class="navbar">
+    <div class="navbar__inner">
+        <div class="navbar__brand">
+            <div class="navbar__brand-icon">
+                <span class="material-icons-outlined">quiz</span>
+            </div>
+            <a class="navbar__brand-text" href="#">HelloQuizz<span>?</span></a>
+        </div>
+        <div class="navbar__actions">
+            <button class="theme-btn" onclick="document.documentElement.classList.toggle('dark')">
+                <span class="material-icons-outlined">dark_mode</span>
+            </button>
+            <div class="avatar-btn">
+                <img alt="User Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmVGhIugThzgAYRLpYB8xePEH832BAisauFDBAVzAHJ4oR9ggFpuvhCGnJPOGepkIpBc0YmFutuZJzLzjXgLiUVfQ7DPoSBdAagcZOOLk9v0XogOSr86HGLe_WJefFWV6_zWsuF8HbSB1ZV5C89p8X1LfPCHE3nQX2lKRSSgu7-YGOX9u63U8Z0AY9LA9SFUqagHUPWTMWc54BGePsRSa8bTaYnpGRe7F3s_3cCxU82yFKKXjIHXvelWxQFmWo4kIPEoqxryqYKloR"/>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<main class="exam-main">
+    <div class="score-grid">
+        <!-- Score Card -->
+        <div class="score-card">
+            <div class="score-circle-wrap">
+                <svg viewBox="0 0 192 192">
+                    <circle class="circle-track" cx="96" cy="96" r="88"/>
+                    <circle class="circle-fill" cx="96" cy="96" r="88"/>
+                </svg>
+                <div class="score-number">
+                    <span class="score-number__value">8/10</span>
+                    <span class="score-number__label">Points</span>
+                </div>
+            </div>
+            <div class="score-summary">
+                <h1 class="score-summary__title">Fantastic Performance! </h1>
+                <p class="score-summary__desc">You've successfully completed the <strong>Advanced Biology Quiz</strong>. You are in the top 5% of all participants today!</p>
+                <div class="score-metrics">
+                    <div class="metric-badge metric-badge--green">
+                        <span class="metric-badge__label">Time Spent</span>
+                        <span class="metric-badge__value">12:45 <small style="font-size:.75rem;font-weight:400">min</small></span>
+                    </div>
+                    <div class="metric-badge metric-badge--blue">
+                        <span class="metric-badge__label">Accuracy</span>
+                        <span class="metric-badge__value">80%</span>
+                    </div>
+                    <div class="metric-badge metric-badge--purple">
+                        <span class="metric-badge__label">Streak</span>
+                        <span class="metric-badge__value">5 </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="stats-card">
+            <h3 class="stats-card__title">
+                <span class="material-icons-outlined">bar_chart</span>
+                Quick Statistics
+            </h3>
+            <div class="progress-row">
+                <div class="progress-row__header">
+                    <span class="progress-row__label">Your Performance</span>
+                    <span class="progress-row__pct">80%</span>
+                </div>
+                <div class="progress-track"><div class="progress-fill" style="width:80%"></div></div>
+            </div>
+            <div class="progress-row">
+                <div class="progress-row__header">
+                    <span class="progress-row__label">Average Score</span>
+                    <span class="progress-row__pct progress-row__pct--muted">62%</span>
+                </div>
+                <div class="progress-track"><div class="progress-fill progress-fill--gray" style="width:62%"></div></div>
+            </div>
+            <div class="insight-box">
+                <p>"Your score is significantly higher than the average. Keep pushing your boundaries!"</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Question Review -->
+    <div class="review-header">
+        <div>
+            <h2 class="review-header__title">Question Review</h2>
+            <p class="review-header__subtitle">Review your answers and learn from your mistakes</p>
+        </div>
+        <div class="review-header__actions">
+            <button class="btn-back">
+                <span class="material-icons-outlined">home</span> Back to Home
+            </button>
+            <button class="btn-retake">
+                <span class="material-icons-outlined">replay</span> Retake Quiz
+            </button>
+        </div>
+    </div>
+
+    <div class="question-list">
+        <!-- Q1 correct -->
+        <div class="question-item question-item--correct">
+            <div class="question-item__top">
+                <div class="question-num question-num--correct">1</div>
+                <div class="question-item__body">
+                    <div class="question-item__header">
+                        <h4 class="question-item__title">Which of the following is the primary powerhouse of the cell?</h4>
+                        <span class="score-tag score-tag--correct">+1.0 Point</span>
+                    </div>
+                    <div class="options-grid">
+                        <div class="option-plain">Nucleus</div>
+                        <div class="option-correct">
+                            Mitochondria
+                            <span class="material-icons-outlined option-icon option-icon--correct">check_circle</span>
+                        </div>
+                        <div class="option-plain">Ribosomes</div>
+                        <div class="option-plain">Vacuole</div>
+                    </div>
+                    <div class="explanation-box">
+                        <p><strong>Explanation:</strong>Mitochondria generate most of the chemical energy needed to power the cell's biochemical reactions. This energy is stored in ATP.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q2 wrong -->
+        <div class="question-item question-item--wrong">
+            <div class="question-item__top">
+                <div class="question-num question-num--wrong">2</div>
+                <div class="question-item__body">
+                    <div class="question-item__header">
+                        <h4 class="question-item__title">What is the main function of red blood cells?</h4>
+                        <span class="score-tag score-tag--wrong">0 Points</span>
+                    </div>
+                    <div class="options-grid">
+                        <div class="option-wrong">
+                            Fight infection
+                            <span class="material-icons-outlined option-icon option-icon--wrong">cancel</span>
+                        </div>
+                        <div class="option-correct">
+                            Transport oxygen
+                            <span class="material-icons-outlined option-icon option-icon--correct">check_circle</span>
+                        </div>
+                        <div class="option-plain">Clot blood</div>
+                        <div class="option-plain">Store nutrients</div>
+                    </div>
+                    <div class="explanation-box">
+                        <p><strong>Explanation:</strong>Your answer was "Fight infection", which is the role of White Blood Cells. Red blood cells contain hemoglobin which binds to oxygen for transport.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Q3 correct -->
+        <div class="question-item question-item--correct">
+            <div class="question-item__top">
+                <div class="question-num question-num--correct">3</div>
+                <div class="question-item__body">
+                    <div class="question-item__header">
+                        <h4 class="question-item__title">How many chromosomes are in a typical human cell?</h4>
+                        <span class="score-tag score-tag--correct">+1.0 Point</span>
+                    </div>
+                    <div class="options-grid">
+                        <div class="option-plain">23</div>
+                        <div class="option-correct">
+                            46
+                            <span class="material-icons-outlined option-icon option-icon--correct">check_circle</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="floating-toolbar">
+    <button class="toolbar-btn"><span class="material-icons-outlined">share</span></button>
+    <div class="toolbar-divider"></div>
+    <button class="toolbar-btn--pdf">
+        <span class="material-icons-outlined">picture_as_pdf</span>
+        Download Certificate
+    </button>
+    <div class="toolbar-divider"></div>
+    <button class="toolbar-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <span class="material-icons-outlined">arrow_upward</span>
+    </button>
+</div>
+
+</body>
+</html>

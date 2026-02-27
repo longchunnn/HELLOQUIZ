@@ -4,23 +4,31 @@ const email_input = document.getElementById('email-input')
 const password_input = document.getElementById('password-input')
 const repeat_password_input = document.getElementById('repeat-password-input')
 const error_message = document.getElementById('error-message')
-
 form.addEventListener('submit', (e) => {
   let errors = []
 
   if(firstname_input){
-    // If we have a firstname input then we are in the signup
+    // Nếu có firstname_input -> Đang ở trang Signup
     errors = getSignupFormErrors(firstname_input.value, email_input.value, password_input.value, repeat_password_input.value)
   }
   else{
-    // If we don't have a firstname input then we are in the login
+    // Nếu không có firstname_input -> Đang ở trang Login
     errors = getLoginFormErrors(email_input.value, password_input.value)
   }
 
   if(errors.length > 0){
-    // If there are any errors
+    // Nếu có lỗi: Ngừng gửi form và hiển thị thông báo
     e.preventDefault()
-    error_message.innerText  = errors.join(". ")
+    error_message.innerText = errors.join(". ")
+  }
+  else {
+    // NẾU KHÔNG CÓ LỖI (Đăng nhập thành công)
+    if (!firstname_input) { 
+      // Chỉ thực hiện chuyển hướng nếu đang ở trang Login
+      e.preventDefault() // Ngăn việc load lại trang mặc định để JS kịp xử lý
+      window.location.href = 'user.html'
+    }
+    // Nếu ở trang Signup, bạn có thể cho submit bình thường hoặc nhảy sang login
   }
 })
 
