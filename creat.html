@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Create &amp; Edit Exam - HelloQuizz</title>
+    <title>Tạo &amp; Chỉnh sửa Bài thi - HelloQuizz</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
     <link rel="stylesheet" href="assets/css/creat.css"/>
@@ -37,8 +37,8 @@
                 <span class="material-icons-round">dark_mode</span>
             </button>
             <div class="user-chip">
-                <img alt="Admin avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9kCmcHoN-urOJIqdkvPEzyK8Pz7Nyap1y1Url3y71gQ4m9P4XUCYE7h-o7U-6Mm16m8y6w2U9XDbTuP2W8HIwVGgAoH4Z1l4Ibz2vJC92SnNgPp_N8Wr9uXio3PjZM7DyUacVjVgBTRfglIbfE-R4zGxF9X7xrNB2rq9jjh8dO5Y9RmFHIvHTXlqR5gMAI9CBL2TUTopfVWc_SQP-xJrixB21Jc_ywqPNrKm4o2Rx8B0Cc97LKzUbWLKtPy3wcVlD8abtk3Z_B0rU"/>
-                <span class="user-chip__name">Admin Panel</span>
+                <img alt="Ảnh đại diện quản trị" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9kCmcHoN-urOJIqdkvPEzyK8Pz7Nyap1y1Url3y71gQ4m9P4XUCYE7h-o7U-6Mm16m8y6w2U9XDbTuP2W8HIwVGgAoH4Z1l4Ibz2vJC92SnNgPp_N8Wr9uXio3PjZM7DyUacVjVgBTRfglIbfE-R4zGxF9X7xrNB2rq9jjh8dO5Y9RmFHIvHTXlqR5gMAI9CBL2TUTopfVWc_SQP-xJrixB21Jc_ywqPNrKm4o2Rx8B0Cc97LKzUbWLKtPy3wcVlD8abtk3Z_B0rU"/>
+                <span class="user-chip__name">Bảng quản trị</span>
             </div>
         </div>
     </div>
@@ -47,15 +47,15 @@
 <main class="page-main">
     <div class="page-header">
         <div>
-            <h2 class="page-header__title">Exam Configuration</h2>
-            <p class="page-header__subtitle">Design your quiz, set rules, and add questions.</p>
+            <h2 class="page-header__title">Cấu hình bài thi</h2>
+            <p class="page-header__subtitle">Thiết kế bài thi, đặt quy tắc và thêm câu hỏi.</p>
         </div>
         <div class="page-header__actions">
             <button id="btnPreview" class="btn-outline">
-                <span class="material-icons-round">visibility</span> Preview
+                <span class="material-icons-round">visibility</span> Xem trước
             </button>
             <div id="btn-pusblish" class="btn-primary" >
-                <span class="material-icons-round">save</span> Publish Exam
+                <span class="material-icons-round">save</span> Xuất bản bài thi
             </div>
         </div>
     </div>
@@ -64,42 +64,42 @@
     <div class="form-section">
     <h3 class="form-section__heading">
         <span class="material-icons-round">description</span>
-        General Information
+        Thông tin chung
     </h3>
     <div class="form-grid">
         
         <div class="form-field form-grid--full">
-            <label class="form-field__label">Exam Title</label>
-            <input class="form-field__input" placeholder="e.g., Advanced Mathematics Midterm 2024" type="text"/>
+            <label class="form-field__label">Tiêu đề bài thi</label>
+            <input class="form-field__input" placeholder="ví dụ: Kiểm tra giữa kỳ Toán nâng cao 2024" type="text"/>
         </div>
         
         <div class="form-field form-grid--full">
-            <label class="form-field__label">Description</label>
-            <textarea class="form-field__textarea" placeholder="Provide instructions for the students..." rows="3"></textarea>
+            <label class="form-field__label">Mô tả</label>
+            <textarea class="form-field__textarea" placeholder="Cung cấp hướng dẫn cho sinh viên..." rows="3"></textarea>
         </div>
         
         <div class="form-field form-grid--full">
-            <label class="form-field__label">Exam Type</label>
+            <label class="form-field__label">Loại bài thi</label>
             <div class="radio-group">
                 <label class="radio-option">
                     <input checked name="exam_type" type="radio" value="free"/>
                     <div class="radio-option__box">
-                        <span class="radio-option__label">Free Practice</span>
-                        <span class="radio-option__hint">No time limit</span>
+                        <span class="radio-option__label">Luyện tập tự do</span>
+                        <span class="radio-option__hint">Không giới hạn thời gian</span>
                     </div>
                 </label>
                 <label class="radio-option">
                     <input name="exam_type" type="radio" value="timed"/>
                     <div class="radio-option__box">
-                        <span class="radio-option__label">Timed Exam</span>
-                        <span class="radio-option__hint">Strict duration</span>
+                        <span class="radio-option__label">Bài thi có thời gian</span>
+                        <span class="radio-option__hint">Thời gian cố định</span>
                     </div>
                 </label>
             </div>
         </div>
 
         <div class="form-field">
-            <label class="form-field__label">Start Date & Time</label>
+            <label class="form-field__label">Ngày giờ bắt đầu</label>
             <div class="input-icon-wrap">
                 <span class="material-icons-round">event</span>
                 <input class="form-field__input" type="datetime-local" />
@@ -107,7 +107,7 @@
         </div>
 
         <div class="form-field">
-            <label class="form-field__label">Duration (Minutes)</label>
+            <label class="form-field__label">Thời lượng (phút)</label>
             <div class="input-icon-wrap">
                 <span class="material-icons-round">schedule</span>
                 <input class="form-field__input" placeholder="60" type="number"/>
@@ -121,10 +121,10 @@
         <div class="questions-header">
             <h3 class="form-section__heading" style="margin-bottom:0">
                 <span class="material-icons-round">ballot</span>
-                Questions Builder
+                Trình tạo câu hỏi
             </h3>
             <button class="btn-upload">
-                <span class="material-icons-round">upload_file</span> Upload Excel
+                <span class="material-icons-round">upload_file</span> Tải lên Excel
             </button>
         </div>
 
@@ -203,7 +203,7 @@
 
         </div> <button id="btnAddQuestion" class="btn-add-question">
             <span class="material-icons-round">add_circle</span>
-            Add Another Question
+            Thêm câu hỏi khác
         </button>
 
 
@@ -229,7 +229,7 @@
 
     <div class="save-hint">
         <span class="material-icons-round">info</span>
-        Changes are automatically saved as draft
+        Thay đổi được tự động lưu nháp
     </div>
 </main>
 

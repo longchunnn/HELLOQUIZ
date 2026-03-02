@@ -12,7 +12,7 @@ function updateQuestionNumbers() {
         const badge = question.querySelector('.question-badge');
         if (badge) {
             // index bắt đầu từ 0, nên cộng 1 để ra số thứ tự (1, 2, 3...)
-            badge.textContent = `Question #${index + 1}`;
+            badge.textContent = `Câu hỏi ${index + 1}`;
         }
     });
 }
@@ -34,9 +34,9 @@ if (btnAddQuestion && questionsContainer) {
             </div>
             <div class="question-body">
                 <div>
-                    <textarea class="question-textarea" placeholder="Enter your question here..."></textarea>
+                    <textarea class="question-textarea" placeholder="Nhập câu hỏi..."></textarea>
                     <div class="answer-grid">
-                        <div class="answer-option"><span class="answer-letter">A</span><input class="answer-input" placeholder="Option A" type="text"/><input class="answer-checkbox" type="checkbox"/></div>
+                        <div class="answer-option"><span class="answer-letter">A</span><input class="answer-input" placeholder="Đáp án A" type="text"/><input class="answer-checkbox" type="checkbox"/></div>
                         <div class="answer-option"><span class="answer-letter">B</span><input class="answer-input" placeholder="Option B" type="text"/><input class="answer-checkbox" type="checkbox"/></div>
                         <div class="answer-option"><span class="answer-letter">C</span><input class="answer-input" placeholder="Option C" type="text"/><input class="answer-checkbox" type="checkbox"/></div>
                         <div class="answer-option"><span class="answer-letter">D</span><input class="answer-input" placeholder="Option D" type="text"/><input class="answer-checkbox" type="checkbox"/></div>
@@ -164,9 +164,9 @@ function createNewQuestionFromExcel(qText, a, b, c, d, correctAns) {
         </div>
         <div class="question-body">
             <div>
-                <textarea class="question-textarea" placeholder="Enter your question here...">${qText}</textarea>
+                <textarea class="question-textarea" placeholder="Nhập câu hỏi...">${qText}</textarea>
                 <div class="answer-grid">
-                    <div class="answer-option"><span class="answer-letter">A</span><input class="answer-input" value="${a}" placeholder="Option A" type="text"/><input class="answer-checkbox" type="checkbox" ${checkA}/></div>
+                    <div class="answer-option"><span class="answer-letter">A</span><input class="answer-input" value="${a}" placeholder="Đáp án A" type="text"/><input class="answer-checkbox" type="checkbox" ${checkA}/></div>
                     <div class="answer-option"><span class="answer-letter">B</span><input class="answer-input" value="${b}" placeholder="Option B" type="text"/><input class="answer-checkbox" type="checkbox" ${checkB}/></div>
                     <div class="answer-option"><span class="answer-letter">C</span><input class="answer-input" value="${c}" placeholder="Option C" type="text"/><input class="answer-checkbox" type="checkbox" ${checkC}/></div>
                     <div class="answer-option"><span class="answer-letter">D</span><input class="answer-input" value="${d}" placeholder="Option D" type="text"/><input class="answer-checkbox" type="checkbox" ${checkD}/></div>
