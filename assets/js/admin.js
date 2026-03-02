@@ -71,3 +71,7 @@ const observer = new MutationObserver((mutations) => {
     });
 });
 observer.observe(document.documentElement, { attributes: true });
+
+document.getElementById('create-exam').addEventListener('click',function(){
+    window.location.href = 'creat.html';
+});

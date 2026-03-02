@@ -3,10 +3,24 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Create &amp; Edit Exam - HelloQuizz</title>
+    <title>Tạo &amp; Chỉnh sửa Bài thi - HelloQuizz</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
     <link rel="stylesheet" href="assets/css/creat.css"/>
+
+    <style>
+    /* CSS cho cửa sổ nổi Preview */
+    .preview-modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(4px); }
+    .preview-modal-content { background-color: #fff; margin: 5% auto; padding: 30px; border-radius: 12px; width: 90%; max-width: 800px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+    .close-modal { color: #94a3b8; float: right; font-size: 28px; font-weight: bold; cursor: pointer; transition: color 0.2s; }
+    .close-modal:hover { color: #d2232a; }
+    
+    /* Giao diện câu hỏi trong khung xem trước */
+    .student-question-card { margin-top: 20px; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc; }
+    .student-question-title { font-weight: 600; margin-bottom: 12px; color: #1e293b; font-size: 1.1rem; }
+    .student-option { margin: 8px 0; display: flex; align-items: center; gap: 8px; color: #475569; }
+    </style>
+
 </head>
 <body>
 
@@ -16,15 +30,15 @@
             <div class="navbar__brand-icon">
                 <span class="material-icons-round">quiz</span>
             </div>
-            <a class="navbar__brand-text" href="#">Hello<span>Quizz</span></a>
+            <a class="navbar__brand-text" href="admin.html">Hello<span>Quizz</span></a>
         </div>
         <div class="navbar__actions">
             <button class="theme-btn" onclick="document.documentElement.classList.toggle('dark')">
                 <span class="material-icons-round">dark_mode</span>
             </button>
             <div class="user-chip">
-                <img alt="Admin avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9kCmcHoN-urOJIqdkvPEzyK8Pz7Nyap1y1Url3y71gQ4m9P4XUCYE7h-o7U-6Mm16m8y6w2U9XDbTuP2W8HIwVGgAoH4Z1l4Ibz2vJC92SnNgPp_N8Wr9uXio3PjZM7DyUacVjVgBTRfglIbfE-R4zGxF9X7xrNB2rq9jjh8dO5Y9RmFHIvHTXlqR5gMAI9CBL2TUTopfVWc_SQP-xJrixB21Jc_ywqPNrKm4o2Rx8B0Cc97LKzUbWLKtPy3wcVlD8abtk3Z_B0rU"/>
-                <span class="user-chip__name">Admin Panel</span>
+                <img alt="Ảnh đại diện quản trị" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9kCmcHoN-urOJIqdkvPEzyK8Pz7Nyap1y1Url3y71gQ4m9P4XUCYE7h-o7U-6Mm16m8y6w2U9XDbTuP2W8HIwVGgAoH4Z1l4Ibz2vJC92SnNgPp_N8Wr9uXio3PjZM7DyUacVjVgBTRfglIbfE-R4zGxF9X7xrNB2rq9jjh8dO5Y9RmFHIvHTXlqR5gMAI9CBL2TUTopfVWc_SQP-xJrixB21Jc_ywqPNrKm4o2Rx8B0Cc97LKzUbWLKtPy3wcVlD8abtk3Z_B0rU"/>
+                <span class="user-chip__name">Bảng quản trị</span>
             </div>
         </div>
     </div>
@@ -33,76 +47,88 @@
 <main class="page-main">
     <div class="page-header">
         <div>
-            <h2 class="page-header__title">Exam Configuration</h2>
-            <p class="page-header__subtitle">Design your quiz, set rules, and add questions.</p>
+            <h2 class="page-header__title">Cấu hình bài thi</h2>
+            <p class="page-header__subtitle">Thiết kế bài thi, đặt quy tắc và thêm câu hỏi.</p>
         </div>
         <div class="page-header__actions">
-            <button class="btn-outline">
-                <span class="material-icons-round">visibility</span> Preview
+            <button id="btnPreview" class="btn-outline">
+                <span class="material-icons-round">visibility</span> Xem trước
             </button>
-            <button class="btn-primary">
-                <span class="material-icons-round">save</span> Publish Exam
-            </button>
+            <div id="btn-pusblish" class="btn-primary" >
+                <span class="material-icons-round">save</span> Xuất bản bài thi
+            </div>
         </div>
     </div>
 
     <!-- General Info -->
     <div class="form-section">
-        <h3 class="form-section__heading">
-            <span class="material-icons-round">description</span>
-            General Information
-        </h3>
-        <div class="form-grid">
-            <div class="form-field form-grid--full">
-                <label class="form-field__label">Exam Title</label>
-                <input class="form-field__input" placeholder="e.g., Advanced Mathematics Midterm 2024" type="text"/>
-            </div>
-            <div class="form-field form-grid--full">
-                <label class="form-field__label">Description</label>
-                <textarea class="form-field__textarea" placeholder="Provide instructions for the students..." rows="3"></textarea>
-            </div>
-            <div class="form-field">
-                <label class="form-field__label">Exam Type</label>
-                <div class="radio-group">
-                    <label class="radio-option">
-                        <input checked name="exam_type" type="radio" value="free"/>
-                        <div class="radio-option__box">
-                            <span class="radio-option__label">Free Practice</span>
-                            <span class="radio-option__hint">No time limit</span>
-                        </div>
-                    </label>
-                    <label class="radio-option">
-                        <input name="exam_type" type="radio" value="timed"/>
-                        <div class="radio-option__box">
-                            <span class="radio-option__label">Timed Exam</span>
-                            <span class="radio-option__hint">Strict duration</span>
-                        </div>
-                    </label>
-                </div>
-            </div>
-            <div class="form-field">
-                <label class="form-field__label">Duration (Minutes)</label>
-                <div class="input-icon-wrap">
-                    <span class="material-icons-round">schedule</span>
-                    <input class="form-field__input" placeholder="60" type="number"/>
-                </div>
+    <h3 class="form-section__heading">
+        <span class="material-icons-round">description</span>
+        Thông tin chung
+    </h3>
+    <div class="form-grid">
+        
+        <div class="form-field form-grid--full">
+            <label class="form-field__label">Tiêu đề bài thi</label>
+            <input class="form-field__input" placeholder="ví dụ: Kiểm tra giữa kỳ Toán nâng cao 2024" type="text"/>
+        </div>
+        
+        <div class="form-field form-grid--full">
+            <label class="form-field__label">Mô tả</label>
+            <textarea class="form-field__textarea" placeholder="Cung cấp hướng dẫn cho sinh viên..." rows="3"></textarea>
+        </div>
+        
+        <div class="form-field form-grid--full">
+            <label class="form-field__label">Loại bài thi</label>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input checked name="exam_type" type="radio" value="free"/>
+                    <div class="radio-option__box">
+                        <span class="radio-option__label">Luyện tập tự do</span>
+                        <span class="radio-option__hint">Không giới hạn thời gian</span>
+                    </div>
+                </label>
+                <label class="radio-option">
+                    <input name="exam_type" type="radio" value="timed"/>
+                    <div class="radio-option__box">
+                        <span class="radio-option__label">Bài thi có thời gian</span>
+                        <span class="radio-option__hint">Thời gian cố định</span>
+                    </div>
+                </label>
             </div>
         </div>
-    </div>
+
+        <div class="form-field">
+            <label class="form-field__label">Ngày giờ bắt đầu</label>
+            <div class="input-icon-wrap">
+                <span class="material-icons-round">event</span>
+                <input class="form-field__input" type="datetime-local" />
+            </div>
+        </div>
+
+        <div class="form-field">
+            <label class="form-field__label">Thời lượng (phút)</label>
+            <div class="input-icon-wrap">
+                <span class="material-icons-round">schedule</span>
+                <input class="form-field__input" placeholder="60" type="number"/>
+            </div>
+        </div>
+
+    </div> </div>
 
     <!-- Questions Builder -->
-    <div class="form-section">
+    <!-- <div class="form-section">
         <div class="questions-header">
             <h3 class="form-section__heading" style="margin-bottom:0">
                 <span class="material-icons-round">ballot</span>
-                Questions Builder
+                Trình tạo câu hỏi
             </h3>
             <button class="btn-upload">
-                <span class="material-icons-round">upload_file</span> Upload Excel
+                <span class="material-icons-round">upload_file</span> Tải lên Excel
             </button>
         </div>
 
-        <div class="question-card">
+        <div id = "questions-container" class="question-card">
             <div class="question-card__header">
                 <span class="question-badge">Question #1</span>
                 <button class="question-delete-btn">
@@ -143,21 +169,75 @@
             </div>
         </div>
 
-        <button class="btn-add-question">
+        <button id = "btn-add-question" class="btn-add-question">
             <span class="material-icons-round">add_circle</span>
             Add Another Question
         </button>
+    </div> -->
+
+
+        <div class="questions-header">
+            <h3 class="form-section__heading" style="margin-bottom:0">
+                <span class="material-icons-round">ballot</span>
+                Questions Builder
+            </h3>
+<button class="btn-upload" id="btnUploadExcel">
+    <span class="material-icons-round">upload_file</span> Upload Excel
+</button>
+
+<input type="file" id="excelFileInput" accept=".xlsx, .xls" style="display: none;" />
+        </div>
+
+        <div id="questions-container"> 
+            
+            <!-- <div class="question-card">
+                <div class="question-card__header">
+                    <span class="question-badge">Question #1</span>
+                    <button class="question-delete-btn">
+                        <span class="material-icons-round">delete</span>
+                    </button>
+                </div>
+                <div class="question-body">
+                    </div> -->
+            </div>
+
+        </div> <button id="btnAddQuestion" class="btn-add-question">
+            <span class="material-icons-round">add_circle</span>
+            Thêm câu hỏi khác
+        </button>
+
+
+    <div id="previewModal" class="preview-modal">
+        <div class="preview-modal-content">
+        <span class="close-modal" id="closePreview">&times;</span>
+        <div id="previewBody">
+            </div>
+        </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="assets/js/creat.js"></script>
+
+    <script>
+        btnPublish = document.getElementById('btn-pusblish');
+
+        btnPublish.addEventListener('click',function(){
+            window.location.href = "manage-exam.html"
+        })
+    </script>
+
+        
 
     <div class="save-hint">
         <span class="material-icons-round">info</span>
-        Changes are automatically saved as draft
+        Thay đổi được tự động lưu nháp
     </div>
 </main>
 
 <button class="fab">
     <span class="material-icons-round">save</span>
 </button>
+
+
 
 </body>
 </html>
