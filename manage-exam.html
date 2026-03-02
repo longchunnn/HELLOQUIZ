@@ -3,16 +3,14 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Hello Quizz - Admin Management Dashboard</title>
+    <title>Manage Exams - Hello Quizz</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="assets/css/admin.css"/>
 </head>
 <body>
 <div class="layout">
 
-    <!-- Sidebar -->
     <aside class="sidebar">
         <div class="sidebar__logo">
             <div class="sidebar__logo-icon">
@@ -22,11 +20,11 @@
         </div>
 
         <nav class="sidebar__nav">
-            <a class="nav-item nav-item--active" href="#">
+            <a class="nav-item" href="admin.html">
                 <span class="material-icons-round">dashboard</span>
                 Overview
             </a>
-            <a class="nav-item" href="manage-exam.html">
+            <a class="nav-item nav-item--active" href="manage-exam.html">
                 <span class="material-icons-round">assignment</span>
                 Manage Exams
             </a>
@@ -67,78 +65,33 @@
         </div>
     </aside>
 
-    <!-- Main -->
     <main class="main">
         <header class="page-header">
             <div>
-                <h2 class="page-header__title">Admin Dashboard</h2>
-                <p class="page-header__subtitle">Welcome back, here's what's happening today.</p>
+                <h2 class="page-header__title">Manage Exams</h2>
+                <p class="page-header__subtitle">View, edit, and organize all your exams in one place.</p>
             </div>
             <div class="page-header__actions">
                 <div class="search-box">
                     <span class="material-icons-round search-box__icon">search</span>
-                    <input class="search-box__input" placeholder="Search exams, students..." type="text"/>
+                    <input class="search-box__input" placeholder="Search exams..." type="text"/>
                 </div>
-
-                <button id = "create-exam" class="btn-primary">
+                <button onclick="window.location.href='creat.html'" class="btn-primary">
                     <span class="material-icons-round">add</span>
                     Create New Exam
                 </button>
-
-                <!-- <a href="creat.html" class="btn-primary" style="text-decoration :none;">
-                    <span class="material-icons-round"> add </span>
-                    Create Exam
-                </a> -->
-
-
             </div>
         </header>
 
-        <!-- Stats -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-card__icon stat-card__icon--blue">
-                    <span class="material-icons-round">school</span>
-                </div>
-                <div>
-                    <p class="stat-card__label">Total Students</p>
-                    <h3 class="stat-card__value">12,842</h3>
-                    <p class="stat-card__trend stat-card__trend--up">
-                        <span class="material-icons-round">arrow_upward</span> 8.2% from last month
-                    </p>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-card__icon stat-card__icon--red">
-                    <span class="material-icons-round">history_edu</span>
-                </div>
-                <div>
-                    <p class="stat-card__label">Exams Conducted</p>
-                    <h3 class="stat-card__value">452</h3>
-                    <p class="stat-card__trend stat-card__trend--up">
-                        <span class="material-icons-round">arrow_upward</span> 12.5% this week
-                    </p>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-card__icon stat-card__icon--amber">
-                    <span class="material-icons-round">trending_up</span>
-                </div>
-                <div>
-                    <p class="stat-card__label">Average Score</p>
-                    <h3 class="stat-card__value">78.4%</h3>
-                    <p class="stat-card__trend stat-card__trend--neutral">Stable vs last week</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Content -->
-        <div class="content-grid">
-            <!-- Recent Exams Table -->
+        <div style="margin-top: 24px;">
             <div class="card">
                 <div class="card__header">
-                    <h3 class="card__title">Recent Exams</h3>
-                    <a class="card__link" href="#">View All</a>
+                    <h3 class="card__title">All Exams List</h3>
+                    <div style="display: flex; gap: 10px;">
+                        <span class="badge badge--live" style="cursor: pointer;">Live</span>
+                        <span class="badge badge--draft" style="cursor: pointer;">Draft</span>
+                        <span class="badge badge--ended" style="cursor: pointer;">Ended</span>
+                    </div>
                 </div>
                 <div class="table-wrap">
                     <table class="table">
@@ -147,11 +100,12 @@
                                 <th>Exam Name</th>
                                 <th>Category</th>
                                 <th>Participants</th>
+                                <th>Created Date</th>
                                 <th>Status</th>
                                 <th style="text-align:right">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="manage-exam-table-body">
                             <tr>
                                 <td>
                                     <div class="table__exam-cell">
@@ -161,6 +115,7 @@
                                 </td>
                                 <td class="table__category">Science</td>
                                 <td>120/150</td>
+                                <td>20 Oct, 2024</td>
                                 <td><span class="badge badge--live">Live</span></td>
                                 <td>
                                     <div class="table__actions">
@@ -178,6 +133,7 @@
                                 </td>
                                 <td class="table__category">Computer</td>
                                 <td>85/100</td>
+                                <td>15 Oct, 2024</td>
                                 <td><span class="badge badge--ended">Ended</span></td>
                                 <td>
                                     <div class="table__actions">
@@ -195,24 +151,8 @@
                                 </td>
                                 <td class="table__category">General</td>
                                 <td>210/250</td>
+                                <td>10 Oct, 2024</td>
                                 <td><span class="badge badge--draft">Draft</span></td>
-                                <td>
-                                    <div class="table__actions">
-                                        <button class="action-btn action-btn--edit"><span class="material-icons-round" style="font-size:1rem">edit</span></button>
-                                        <button class="action-btn action-btn--delete"><span class="material-icons-round" style="font-size:1rem">delete</span></button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="table__exam-cell">
-                                        <div class="table__exam-icon table__exam-icon--purple">H</div>
-                                        <span class="table__exam-name">History Trivia Final</span>
-                                    </div>
-                                </td>
-                                <td class="table__category">History</td>
-                                <td>45/50</td>
-                                <td><span class="badge badge--live">Live</span></td>
                                 <td>
                                     <div class="table__actions">
                                         <button class="action-btn action-btn--edit"><span class="material-icons-round" style="font-size:1rem">edit</span></button>
@@ -223,80 +163,20 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+                
+                <div style="padding: 16px 20px; border-top: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; color: #64748b; font-size: 0.875rem;">
+                    <span>Showing 1 to 3 of 45 exams</span>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="btn-outline" style="padding: 6px 12px; font-size: 0.875rem;">Previous</button>
+                        <button class="btn-outline" style="padding: 6px 12px; font-size: 0.875rem;">Next</button>
+                    </div>
+                </div>
 
-            <!-- Chart -->
-            <div class="chart-card">
-                <div class="chart-card__header">
-                    <h3 class="chart-card__title">Participation</h3>
-                    <select class="chart-card__select">
-                        <option>Last 7 Days</option>
-                        <option>Last Month</option>
-                    </select>
-                </div>
-                <div class="chart-canvas-wrap">
-                    <canvas id="participationChart"></canvas>
-                </div>
-                <div class="chart-legend">
-                    <div class="chart-legend__item">
-                        <span class="chart-legend__label">
-                            <span class="chart-legend__dot chart-legend__dot--primary"></span>
-                            Peak Students
-                        </span>
-                        <span class="chart-legend__value">1,420</span>
-                    </div>
-                    <div class="chart-legend__item">
-                        <span class="chart-legend__label">
-                            <span class="chart-legend__dot chart-legend__dot--muted"></span>
-                            Avg. Daily
-                        </span>
-                        <span class="chart-legend__value">982</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bottom -->
-        <div class="bottom-grid">
-            <div class="promo-banner">
-                <div>
-                    <h4 class="promo-banner__title">Scale your exams with ease!</h4>
-                    <p class="promo-banner__desc">Professional tier tools are now available for all admins for a limited time.</p>
-                    <button class="promo-banner__btn">Learn More</button>
-                </div>
-                <div class="promo-banner__icon">
-                    <span class="material-icons-round">rocket_launch</span>
-                </div>
-            </div>
-
-            <div class="schedule-card">
-                <h4 class="schedule-card__title">Upcoming Schedule</h4>
-                <div class="schedule-list">
-                    <div class="schedule-item">
-                        <div class="schedule-item__date schedule-item__date--primary">
-                            <span>24</span>
-                            <span class="schedule-item__month">Oct</span>
-                        </div>
-                        <div>
-                            <p class="schedule-item__title">Physics Final Exam</p>
-                            <p class="schedule-item__time">09:00 AM - 11:30 AM</p>
-                        </div>
-                    </div>
-                    <div class="schedule-item">
-                        <div class="schedule-item__date schedule-item__date--muted">
-                            <span>25</span>
-                            <span class="schedule-item__month">Oct</span>
-                        </div>
-                        <div>
-                            <p class="schedule-item__title">Chemistry Mock</p>
-                            <p class="schedule-item__time">02:00 PM - 03:30 PM</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </main>
 </div>
 <script src="assets/js/admin.js"></script>
+
 </body>
 </html>

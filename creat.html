@@ -30,7 +30,7 @@
             <div class="navbar__brand-icon">
                 <span class="material-icons-round">quiz</span>
             </div>
-            <a class="navbar__brand-text" href="#">Hello<span>Quizz</span></a>
+            <a class="navbar__brand-text" href="admin.html">Hello<span>Quizz</span></a>
         </div>
         <div class="navbar__actions">
             <button class="theme-btn" onclick="document.documentElement.classList.toggle('dark')">
@@ -54,9 +54,9 @@
             <button id="btnPreview" class="btn-outline">
                 <span class="material-icons-round">visibility</span> Preview
             </button>
-            <button class="btn-primary">
+            <div id="btn-pusblish" class="btn-primary" >
                 <span class="material-icons-round">save</span> Publish Exam
-            </button>
+            </div>
         </div>
     </div>
 
@@ -217,6 +217,13 @@
     <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
     <script src="assets/js/creat.js"></script>
 
+    <script>
+        btnPublish = document.getElementById('btn-pusblish');
+
+        btnPublish.addEventListener('click',function(){
+            window.location.href = "manage-exam.html"
+        })
+    </script>
 
         
 
