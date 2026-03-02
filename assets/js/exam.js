@@ -1,47 +1,47 @@
 (() => {
-  "use strict";
+  ("use strict");
+  //dùng strict mode
   const EXAM = {
     title: "Advanced Mathematics: Final Examination 2024",
     durationSeconds: 45 * 60,
     questions: buildSampleQuestions(30),
   };
+  //tạo mẫu câu hỏi
   function buildSampleQuestions(n) {
     const base = {
-      text: "A particle moves along a straight line with a velocity given by v(t) = 3t - 6t meters per second. What is the total distance traveled by the particle from t = 0 to t = 3 seconds?",
+      text: "Tôi là ai?",
       options: [
-        { key: "A", text: "4 meters" },
-        { key: "B", text: "8 meters" },
-        { key: "C", text: "12 meters" },
-        { key: "D", text: "16 meters" },
+        { key: "A", text: "Thienne" },
+        { key: "B", text: "Khong phai Thien" },
+        { key: "C", text: "Ta Thanh" },
+        { key: "D", text: "Thien Thien" },
       ],
     };
     return Array.from({ length: n }, (_, i) => ({
       id: i + 1,
       tag: `Question ${String(i + 1).padStart(2, "0")}`,
-      text:
-        i === 0
-          ? base.text
-          : `${base.text} (Sample Q${String(i + 1).padStart(2, "0")})`,
+      text: `${base.text} (Sample Q${String(i + 1).padStart(2, "0")})`,
       options: base.options,
     }));
+    //trả về mảng object, mỗi object là 1 câu hỏi và câu trả lời
   }
-  const STORAGE_KEY = "helloquizz_exam_state_v2";
+  const STORAGE_KEY = "helloquizz_exam_state_v3";
 
   const state = {
     startedAt: null,
     duration: EXAM.durationSeconds,
     currentIndex: 0,
 
-    answers: {},
-    marked: {}, 
-    visited: {},
+    answers: {}, //ghi lại số câu trả lời
+    marked: {}, //các câu đánh dấu
+    visited: {}, //các câu đã xem
 
     submitted: false,
     submitReason: null,
   };
-  const $ = (sel, root = document) => root.querySelector(sel);
-  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
-
+  const $ = (sel, root = document) => root.querySelector(sel); //function lấy element đầu tiên
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel)); //function lấy mảng tất cả các element
+  //Object chứa các DOM elements
   const el = {
     examTitle: $("#examTitle"),
     timerValue: $("#timerValue"),
@@ -75,10 +75,10 @@
 
   function loadState() {
     try {
+      //lấy dữ liệu đã lưu (trạng thái bài kiểm tra đang làm)
       const raw = localStorage.getItem(STORAGE_KEY);
       if (!raw) return;
       const saved = JSON.parse(raw);
-
       Object.assign(state, {
         startedAt: saved.startedAt ?? state.startedAt,
         duration: saved.duration ?? state.duration,
@@ -89,20 +89,19 @@
         submitted: saved.submitted ?? state.submitted,
         submitReason: saved.submitReason ?? state.submitReason,
       });
-    } catch {
-    }
+    } catch {}
   }
-
+  //Lưu trạng thái bài thi vào trình duyệt (localStorage)
   function saveState() {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    } catch {
-    }
+    } catch {}
   }
-  let timerHandle = null;
+
+  let timerHandle = null; //biến lưu time 
 
   function pad2(n) {
-    return String(Math.max(0, n | 0)).padStart(2, "0");
+    return String(Math.max(0, n | 0)).padStart(2, "0"); //định dạng lại phút giây đủ 2 kí tự và tránh âm, nếu âm thì thành 0
   }
 
   function formatMMSS(totalSeconds) {
@@ -111,19 +110,19 @@
     const ss = s % 60;
     return `${pad2(mm)}:${pad2(ss)}`;
   }
-
+  //bắt đầu thời gian khi thời gian chưa chạy 
   function startTimerIfNeeded() {
     if (state.startedAt) return;
     state.startedAt = Date.now();
     saveState();
   }
-
+  //chức năng lấy số thời gian còn lại 
   function getRemainingSeconds() {
     if (!state.startedAt) return state.duration;
     const elapsed = Math.floor((Date.now() - state.startedAt) / 1000);
     return state.duration - elapsed;
   }
-
+  //chức năng nếu thời gian hết thì tự động nộp bài 
   function updateTimerUI() {
     const remain = getRemainingSeconds();
     el.timerValue.textContent = formatMMSS(remain);
@@ -132,12 +131,12 @@
       submitExam("timeout");
     }
   }
-
+  //chức năng bắt đầu vòng lặp thời gian
   function startTimerLoop() {
     if (timerHandle) clearInterval(timerHandle);
     timerHandle = setInterval(updateTimerUI, 250);
   }
-
+  //chức năng 
   function openModal(title, message) {
     el.modalTitle.textContent = title;
     el.modalMessage.textContent = message;
