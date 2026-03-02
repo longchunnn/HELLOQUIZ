@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Kết quả theo sinh viên - Hello Quizz Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/css/admin.css"/>
+    <link rel="stylesheet" href="assets/css/admin-student-result.css"/>
+</head>
+<body>
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar__logo">
+            <div class="sidebar__logo-icon">
+                <span class="material-icons-round">quiz</span>
+            </div>
+            <h1 class="sidebar__logo-text"><span>Hello</span>Quizz</h1>
+        </div>
+
+        <nav class="sidebar__nav">
+            <a class="nav-item" href="admin.html">
+                <span class="material-icons-round">dashboard</span>
+                Tổng quan
+            </a>
+            <a class="nav-item" href="#">
+                <span class="material-icons-round">assignment</span>
+                Quản lý kỳ thi
+            </a>
+            <a class="nav-item" href="#">
+                <span class="material-icons-round">people</span>
+                Quản lý người dùng
+            </a>
+            <a class="nav-item" href="admin-statistics.html">
+                <span class="material-icons-round">analytics</span>
+                Thống kê
+            </a>
+            <a class="nav-item nav-item--active" href="admin-student-result.html">
+                <span class="material-icons-round">person_search</span>
+                Kết quả sinh viên
+            </a>
+            <a class="nav-item" href="#">
+                <span class="material-icons-round">settings</span>
+                Cài đặt
+            </a>
+        </nav>
+
+        <div class="sidebar__footer">
+            <button class="theme-toggle" onclick="document.documentElement.classList.toggle('dark')">
+                <span class="theme-toggle__label">
+                    <span class="material-icons-round">contrast</span>
+                    Giao diện
+                </span>
+                <span class="toggle-track">
+                    <span class="toggle-thumb"></span>
+                </span>
+            </button>
+            <div class="sidebar__user">
+                <div class="sidebar__user-inner">
+                    <img class="sidebar__avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBHrisHkiV9iX1b0eVUOu_BTte5taJ71o5HwNusUtt4psnPHwI8sblvIDoFEguWoO6-x9rh7gxFhd2cqbw1ijieLe60b4nDCQIZCI5zQ7e3ma7GcqUXEsN_-xJKec1PExWe8P5LvpCt2oYLFmYBPDmTnn2OYpCufhEONl4ZZ1C_pf8BHtlVZRD02uOf1MgSQE7oNJjIdAEB8fqsnZyEFlJIMnKbM6mGTxISX9E3WDea8TXmLM6mzMYhBxBiAj0RA1RMjSe-IPWkI95" alt="Admin"/>
+                    <div>
+                        <p class="sidebar__user-name">Admin</p>
+                        <p class="sidebar__user-role">Quản trị viên</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main main--student">
+        <div class="main-content">
+        <header class="page-header page-header--student">
+            <div>
+                <h2 class="page-header__title">Kết quả theo sinh viên</h2>
+                <p class="page-header__subtitle">Tìm kiếm và xem chi tiết kết quả thi của từng sinh viên</p>
+            </div>
+        </header>
+
+        <!-- Tìm kiếm -->
+        <section class="card search-section search-card">
+            <div class="search-section__head">
+                <span class="material-icons-round search-section__icon">person_search</span>
+                <h3 class="search-section__title">Tìm kiếm sinh viên</h3>
+            </div>
+            <div class="search-row">
+                <div class="search-box search-box--wide">
+                    <span class="material-icons-round search-box__icon">search</span>
+                    <input class="search-box__input" id="studentSearch" type="text" placeholder="Nhập tên hoặc mã số sinh viên (VD: B23DCCN001, Nguyễn Văn An)..."/>
+                </div>
+                <button type="button" class="btn-primary btn-search-submit" id="btnSearch">
+                    <span class="material-icons-round">search</span>
+                    Tìm kiếm
+                </button>
+            </div>
+            <p class="search-hint">Gợi ý: B23DCCN001, B23DCCN002 (fix dữ liệu)</p>
+        </section>
+
+        <!-- Thông tin sinh viên -->
+        <section class="card student-info-card student-profile-card" id="studentInfoCard" hidden>
+            <div class="student-info-header">
+                <div class="student-info-avatar" id="studentInfoAvatar">A</div>
+                <div class="student-info-meta">
+                    <h3 class="student-info-name" id="studentInfoName">—</h3>
+                    <p class="student-info-mssv" id="studentInfoMssv">Mã SV: —</p>
+                    <p class="student-info-email" id="studentInfoEmail">—</p>
+                </div>
+                <div class="student-info-actions">
+                    <button type="button" class="btn-primary" id="btnExportReport">
+                        <span class="material-icons-round">print</span>
+                        In báo cáo
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Danh sách kỳ thi đã tham gia -->
+        <section class="card exams-section table-card" id="examsSection" hidden>
+            <div class="card__header">
+                <h3 class="card__title">Các kỳ thi đã tham gia</h3>
+            </div>
+            <div class="table-wrap">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Kỳ thi</th>
+                            <th>Trạng thái</th>
+                            <th>Điểm</th>
+                            <th>Thời gian làm bài</th>
+                            <th>Ngày thi</th>
+                            <th style="text-align:right">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="examsTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Chi tiết kết quả từng kỳ thi -->
+        <section class="card detail-section detail-card" id="detailSection" hidden>
+            <div class="detail-section__header">
+                <h3 class="card__title" id="detailExamTitle">Chi tiết bài làm</h3>
+                <button type="button" class="btn-outline-sm" id="btnCloseDetail">
+                    <span class="material-icons-round">close</span>
+                    Đóng
+                </button>
+            </div>
+            <div class="detail-summary" id="detailSummary">
+                <p><strong>Điểm:</strong> <span id="detailScore">—</span></p>
+                <p><strong>Trạng thái:</strong> <span id="detailStatus">—</span></p>
+                <p><strong>Thời gian:</strong> <span id="detailTime">—</span></p>
+            </div>
+            <div class="detail-questions" id="detailQuestions">
+                <!-- Điền bằng JS -->
+            </div>
+        </section>
+
+        <!-- Khối in báo cáo -->
+        <div id="printArea" class="print-area"></div>
+        </div>
+    </main>
+</div>
+
+<script src="assets/js/admin-student-result.js"></script>
+</body>
+</html>

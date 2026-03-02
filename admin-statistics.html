@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Thống kê & Báo cáo - Hello Quizz Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="assets/css/admin.css"/>
+    <link rel="stylesheet" href="assets/css/admin-statistics.css"/>
+</head>
+<body>
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar__logo">
+            <div class="sidebar__logo-icon">
+                <span class="material-icons-round">quiz</span>
+            </div>
+            <h1 class="sidebar__logo-text"><span>Hello</span>Quizz</h1>
+        </div>
+
+        <nav class="sidebar__nav">
+            <a class="nav-item" href="admin.html">
+                <span class="material-icons-round">dashboard</span>
+                Tổng quan
+            </a>
+            <a class="nav-item" href="#">
+                <span class="material-icons-round">assignment</span>
+                Quản lý kỳ thi
+            </a>
+            <a class="nav-item" href="#">
+                <span class="material-icons-round">people</span>
+                Quản lý người dùng
+            </a>
+            <a class="nav-item nav-item--active" href="admin-statistics.html">
+                <span class="material-icons-round">analytics</span>
+                Thống kê
+            </a>
+            <a class="nav-item" href="admin-student-result.html">
+                <span class="material-icons-round">person_search</span>
+                Kết quả sinh viên
+            </a>
+            <a class="nav-item" href="#">
+                <span class="material-icons-round">settings</span>
+                Cài đặt
+            </a>
+        </nav>
+
+        <div class="sidebar__footer">
+            <button class="theme-toggle" onclick="document.documentElement.classList.toggle('dark')">
+                <span class="theme-toggle__label">
+                    <span class="material-icons-round">contrast</span>
+                    Giao diện
+                </span>
+                <span class="toggle-track">
+                    <span class="toggle-thumb"></span>
+                </span>
+            </button>
+            <div class="sidebar__user">
+                <div class="sidebar__user-inner">
+                    <img class="sidebar__avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBHrisHkiV9iX1b0eVUOu_BTte5taJ71o5HwNusUtt4psnPHwI8sblvIDoFEguWoO6-x9rh7gxFhd2cqbw1ijieLe60b4nDCQIZCI5zQ7e3ma7GcqUXEsN_-xJKec1PExWe8P5LvpCt2oYLFmYBPDmTnn2OYpCufhEONl4ZZ1C_pf8BHtlVZRD02uOf1MgSQE7oNJjIdAEB8fqsnZyEFlJIMnKbM6mGTxISX9E3WDea8TXmLM6mzMYhBxBiAj0RA1RMjSe-IPWkI95" alt="Admin"/>
+                    <div>
+                        <p class="sidebar__user-name">Admin</p>
+                        <p class="sidebar__user-role">Quản trị viên</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main main--stats">
+        <div class="main-content">
+        <header class="page-header page-header--stats">
+            <div>
+                <h2 class="page-header__title">Thống kê & Báo cáo</h2>
+                <p class="page-header__subtitle">Tổng hợp kết quả các kỳ thi và phân tích hiệu suất</p>
+            </div>
+            <div class="page-header__actions">
+                <button type="button" class="btn-outline" id="btnExportPdf">
+                    <span class="material-icons-round">picture_as_pdf</span>
+                    Xuất PDF
+                </button>
+            </div>
+        </header>
+
+        <!-- Bộ lọc -->
+        <section class="filter-section card filter-card">
+            <div class="filter-section__head">
+                <span class="material-icons-round filter-section__icon">tune</span>
+                <h3 class="filter-section__title">Lọc dữ liệu</h3>
+            </div>
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label class="filter-label">Kỳ thi</label>
+                    <select class="filter-select" id="filterExam">
+                        <option value="">Tất cả kỳ thi</option>
+                        <option value="gk">Giữa kỳ - Toán cao cấp</option>
+                        <option value="ck">Cuối kỳ - Lập trình Web</option>
+                        <option value="lt">Luyện tập - Cấu trúc dữ liệu</option>
+                        <option value="tn">Tuyển sinh 2024</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Từ ngày</label>
+                    <input type="date" class="filter-input" id="filterDateFrom" value="2024-01-01"/>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Đến ngày</label>
+                    <input type="date" class="filter-input" id="filterDateTo" value="2024-12-31"/>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Điểm từ</label>
+                    <input type="number" class="filter-input filter-input--number" id="filterScoreMin" min="0" max="100" placeholder="0"/>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Điểm đến</label>
+                    <input type="number" class="filter-input filter-input--number" id="filterScoreMax" min="0" max="100" placeholder="100"/>
+                </div>
+                <div class="filter-group filter-group--actions">
+                    <button type="button" class="btn-primary" id="btnApplyFilter">
+                        <span class="material-icons-round">filter_list</span>
+                        Áp dụng
+                    </button>
+                    <button type="button" class="btn-outline" id="btnResetFilter">Đặt lại</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- KPI -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-card__icon stat-card__icon--blue">
+                    <span class="material-icons-round">groups</span>
+                </div>
+                <div>
+                    <p class="stat-card__label">Tổng lượt tham gia</p>
+                    <h3 class="stat-card__value" id="kpiTotalAttempts">1.284</h3>
+                    <p class="stat-card__trend stat-card__trend--up">
+                        <span class="material-icons-round">arrow_upward</span> +12% so tháng trước
+                    </p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__icon stat-card__icon--amber">
+                    <span class="material-icons-round">trending_up</span>
+                </div>
+                <div>
+                    <p class="stat-card__label">Điểm trung bình</p>
+                    <h3 class="stat-card__value" id="kpiAvgScore">78,4%</h3>
+                    <p class="stat-card__trend stat-card__trend--neutral">Ổn định</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__icon stat-card__icon--green">
+                    <span class="material-icons-round">check_circle</span>
+                </div>
+                <div>
+                    <p class="stat-card__label">Tỷ lệ hoàn thành</p>
+                    <h3 class="stat-card__value" id="kpiCompletionRate">94,2%</h3>
+                    <p class="stat-card__trend stat-card__trend--up">
+                        <span class="material-icons-round">arrow_upward</span> +2,1%
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Biểu đồ phân phối điểm -->
+        <div class="card chart-card-full">
+            <div class="card__header">
+                <h3 class="card__title">Phân phối điểm số</h3>
+                <p class="card__subtitle">Số lượng sinh viên theo khoảng điểm</p>
+            </div>
+            <div class="chart-canvas-wrap chart-canvas-wrap--tall">
+                <canvas id="scoreDistributionChart"></canvas>
+            </div>
+            <div class="chart-legend">
+                <div class="chart-legend__item">
+                    <span class="chart-legend__label">
+                        <span class="chart-legend__dot chart-legend__dot--primary"></span>
+                        Số sinh viên
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bảng xếp hạng theo từng môn -->
+        <section class="card table-card ranking-card">
+            <div class="card__header">
+                <h3 class="card__title">Bảng xếp hạng điểm theo từng môn</h3>
+                <p class="card__subtitle">Chọn kỳ thi để xem thứ hạng sinh viên (theo dữ liệu đã lọc)</p>
+            </div>
+            <div class="ranking-control">
+                <label class="filter-label" for="rankingExam">Kỳ thi / Môn</label>
+                <select class="filter-select ranking-select" id="rankingExam">
+                    <option value="">— Chọn kỳ thi —</option>
+                    <option value="gk">Giữa kỳ - Toán cao cấp</option>
+                    <option value="ck">Cuối kỳ - Lập trình Web</option>
+                    <option value="lt">Luyện tập - Cấu trúc dữ liệu</option>
+                    <option value="tn">Tuyển sinh 2024</option>
+                </select>
+            </div>
+            <div class="ranking-placeholder" id="rankingPlaceholder">
+                <span class="material-icons-round">emoji_events</span>
+                <p>Chọn một kỳ thi ở trên để xem bảng xếp hạng</p>
+            </div>
+            <div class="table-wrap ranking-table-wrap" id="rankingTableWrap" hidden>
+                <table class="table ranking-table" id="rankingTable">
+                    <thead>
+                        <tr>
+                            <th>Hạng</th>
+                            <th>Sinh viên</th>
+                            <th>Mã SV</th>
+                            <th>Điểm</th>
+                            <th>Thời gian làm bài</th>
+                            <th>Ngày thi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rankingTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Bảng thống kê tổng hợp -->
+        <div class="card table-card">
+            <div class="card__header">
+                <h3 class="card__title">Bảng thống kê tổng hợp kết quả</h3>
+                <p class="card__subtitle">Kết quả tất cả sinh viên tham gia các kỳ thi (fix dữ liệu)</p>
+            </div>
+            <div class="table-wrap">
+                <table class="table" id="statsTable">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Sinh viên</th>
+                            <th>Mã SV</th>
+                            <th>Kỳ thi</th>
+                            <th>Trạng thái</th>
+                            <th>Điểm</th>
+                            <th>Thời gian làm bài</th>
+                            <th>Ngày thi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="statsTableBody">
+                        <!-- Dữ liệu fix -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination-bar">
+                <p>Hiển thị <strong>1 – 10</strong> trong tổng <strong id="statsTotalRows">24</strong> bản ghi</p>
+                <div class="pagination-btns">
+                    <button type="button" class="pag-btn" id="pagPrev" disabled><span class="material-icons-round">chevron_left</span></button>
+                    <button type="button" class="pag-btn" id="pagNext"><span class="material-icons-round">chevron_right</span></button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+</div>
+
+<script src="assets/js/admin-statistics.js"></script>
+</body>
+</html>
