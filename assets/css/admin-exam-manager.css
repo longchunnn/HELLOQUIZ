@@ -1,0 +1,90 @@
+/* admin-exam-manager.css — Admin exam manager page styles */
+
+/* Modal */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.5); z-index: 500;
+  justify-content: center; align-items: center;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--white); border-radius: var(--radius-lg);
+  padding: 32px; width: 90%; max-width: 560px;
+  max-height: 90vh; overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+}
+.modal-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 24px;
+}
+.modal-title { font-size: 1.15rem; font-weight: 900; color: var(--dark); }
+.modal-close {
+  background: none; border: none; cursor: pointer;
+  color: var(--gray-400); font-size: 1.4rem; line-height: 1;
+  transition: var(--transition); padding: 4px;
+}
+.modal-close:hover { color: var(--dark); }
+.modal-footer { display: flex; gap: 12px; justify-content: flex-end; margin-top: 28px; }
+
+/* Form fields */
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; font-size: .85rem; font-weight: 800; color: var(--gray-600); margin-bottom: 6px; }
+.form-control {
+  width: 100%; padding: 10px 14px;
+  border: 2px solid var(--gray-200); border-radius: var(--radius-sm);
+  font-family: 'Nunito', sans-serif; font-size: .9rem; color: var(--dark);
+  background: var(--white); outline: none; transition: var(--transition); box-sizing: border-box;
+}
+.form-control:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(220,38,38,.1); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+/* Toolbar */
+.toolbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+.search-input-wrap { position: relative; flex: 1; min-width: 200px; }
+.search-input-wrap .material-symbols-rounded { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-400); font-size: 1.1rem; }
+.search-input { width: 100%; padding: 10px 14px 10px 38px; border: 2px solid var(--gray-200); border-radius: var(--radius-sm); font-family: 'Nunito', sans-serif; font-size: .875rem; outline: none; transition: var(--transition); box-sizing: border-box; color: var(--dark); background: var(--white); }
+.search-input:focus { border-color: var(--red); }
+.filter-select { padding: 10px 14px; border: 2px solid var(--gray-200); border-radius: var(--radius-sm); font-family: 'Nunito', sans-serif; font-size: .875rem; color: var(--dark); background: var(--white); outline: none; transition: var(--transition); cursor: pointer; }
+.filter-select:focus { border-color: var(--red); }
+
+.action-btn { background: none; border: none; cursor: pointer; padding: 6px; border-radius: 6px; transition: var(--transition); color: var(--gray-500); }
+.action-btn:hover { background: var(--gray-100); }
+.action-btn.edit:hover { color: #3B82F6; background: #EFF6FF; }
+.action-btn.delete:hover { color: #EF4444; background: #FEF2F2; }
+.action-btn.view:hover { color: var(--green); background: #F0FDF4; }
+
+/* Step tabs & question builder */
+.step-tab {
+  padding:12px 20px; background:none; border:none; cursor:pointer;
+  font-family:'Nunito',sans-serif; font-size:.875rem; font-weight:700;
+  color:var(--gray-500); border-bottom:3px solid transparent; margin-bottom:-2px;
+  transition:var(--transition); display:flex; align-items:center;
+}
+.step-tab.active { color:var(--red); border-bottom-color:var(--red); }
+.q-card {
+  border:2px solid var(--gray-200); border-radius:var(--radius-md);
+  padding:16px; background:var(--white);
+}
+.q-card__header {
+  display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;
+}
+.q-card__num { font-size:.75rem; font-weight:900; color:var(--red); background:var(--red-light); padding:3px 10px; border-radius:99px; }
+.q-card__del { background:none; border:none; cursor:pointer; color:var(--gray-400); padding:4px; border-radius:6px; transition:var(--transition); }
+.q-card__del:hover { color:#EF4444; background:#FEF2F2; }
+.option-row {
+  display:grid; grid-template-columns:28px 1fr auto; align-items:center; gap:10px;
+  padding:10px 12px; border:2px solid var(--gray-200); border-radius:var(--radius-sm);
+  margin-bottom:8px; background:var(--white); transition:var(--transition);
+}
+.option-row.is-correct { border-color:#22C55E; background:#F0FDF4; }
+.option-key-label {
+  width:26px; height:26px; border-radius:50%; background:var(--gray-100);
+  display:flex; align-items:center; justify-content:center;
+  font-size:.78rem; font-weight:900; color:var(--gray-600); flex-shrink:0;
+}
+.option-row.is-correct .option-key-label { background:#22C55E; color:white; }
+.option-input {
+  border:none; outline:none; font-family:'Nunito',sans-serif;
+  font-size:.875rem; font-weight:600; color:var(--dark); background:transparent; width:100%;
+}
+.correct-radio { accent-color:#22C55E; width:16px; height:16px; cursor:pointer; }

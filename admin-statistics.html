@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thống kê & Báo cáo — HelloQuizz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link rel="stylesheet" href="assets/css/app-shared.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="assets/css/admin-statistics.css"/>
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- ========= ADMIN SIDEBAR ========= -->
+  <aside class="app-sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" rx="10" fill="#DC2626"/>
+        <rect x="7" y="9" width="18" height="22" rx="4" fill="white"/>
+        <rect x="15" y="9" width="18" height="22" rx="4" fill="white" opacity="0.85"/>
+        <text x="20" y="26" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900" font-size="16" fill="#DC2626">?</text>
+      </svg>
+      <span class="sidebar-brand__name">Hello<span>Quizz</span></span>
+    </div>
+    <nav class="sidebar-nav">
+      <p class="sidebar-nav__section-title">Quản trị</p>
+      <a class="nav-link" href="admin-dashboard.html">
+        <span class="nav-icon material-symbols-rounded">dashboard</span> Tổng quan
+      </a>
+      <a class="nav-link" href="admin-exam-manager.html">
+        <span class="nav-icon material-symbols-rounded">assignment</span> Quản lý đề thi
+      </a>
+      <a class="nav-link" href="admin-user-manager.html">
+        <span class="nav-icon material-symbols-rounded">group</span> Quản lý người dùng
+      </a>
+      <a class="nav-link active" href="admin-statistics.html">
+        <span class="nav-icon material-symbols-rounded">analytics</span> Thống kê
+      </a>
+      <a class="nav-link" href="admin-profile.html">
+        <span class="nav-icon material-symbols-rounded">manage_accounts</span> Hồ sơ Admin
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-user__avatar">A</div>
+        <div class="sidebar-user__info">
+          <p class="sidebar-user__name">Admin Chính</p>
+          <p class="sidebar-user__role">Quản trị viên</p>
+        </div>
+      </div>
+      <button class="sidebar-logout" onclick="window.location.href='landing.html'">
+        <span class="material-symbols-rounded" style="font-size:1rem">logout</span> Đăng xuất
+      </button>
+    </div>
+  </aside>
+
+  <!-- ========= MAIN ========= -->
+  <main class="app-main">
+    <header class="app-header">
+      <div class="app-header__left">
+        <button class="sidebar-toggle" id="sidebar-toggle">
+          <span class="material-symbols-rounded">menu</span>
+        </button>
+        <div>
+          <p class="app-header__title">Thống kê & Báo cáo</p>
+          <p class="app-header__subtitle">Phân tích hiệu suất và tiến độ học sinh</p>
+        </div>
+      </div>
+      <div class="app-header__right">
+        <button class="header-icon-btn theme-btn" onclick="document.documentElement.classList.toggle('dark')">
+          <span class="material-symbols-rounded">dark_mode</span>
+        </button>
+        <button class="btn btn-outline btn-sm" onclick="window.print()">
+          <span class="material-symbols-rounded" style="font-size:.9rem">description</span> Xuất PDF
+        </button>
+        <button class="btn btn-primary btn-sm">
+          <span class="material-symbols-rounded" style="font-size:.9rem">table_chart</span> Xuất Excel
+        </button>
+      </div>
+    </header>
+
+    <div class="page-content">
+
+      <!-- Filters -->
+      <div class="filter-bar">
+        <span style="font-size:.875rem;font-weight:800;color:var(--gray-600);">Lọc:</span>
+        <select>
+          <option>Tất cả môn học</option>
+          <option>Toán học</option>
+          <option>Vật lý</option>
+          <option>Hóa học</option>
+          <option>Sinh học</option>
+          <option>Tiếng Anh</option>
+        </select>
+        <select>
+          <option>7 ngày qua</option>
+          <option>30 ngày qua</option>
+          <option>3 tháng qua</option>
+          <option>Năm nay</option>
+        </select>
+        <input type="date" value="2026-02-01"/>
+        <span style="font-size:.875rem;color:var(--gray-500);font-weight:600;">đến</span>
+        <input type="date" value="2026-03-05"/>
+        <button class="btn btn-primary btn-sm">
+          <span class="material-symbols-rounded" style="font-size:.9rem">filter_alt</span> Áp dụng
+        </button>
+      </div>
+
+      <!-- KPI -->
+      <div class="kpi-grid" style="margin-bottom:28px;">
+        <div class="kpi-card">
+          <div class="kpi-card__icon kpi-card__icon--blue"><span class="material-symbols-rounded">quiz</span></div>
+          <p class="kpi-card__label">Tổng lượt thi</p>
+          <p class="kpi-card__value">18.420</p>
+          <p class="kpi-card__trend kpi-card__trend--up">↑ 14.3% so với kỳ trước</p>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__icon kpi-card__icon--green"><span class="material-symbols-rounded">grade</span></div>
+          <p class="kpi-card__label">Điểm TB toàn trường</p>
+          <p class="kpi-card__value">6.84</p>
+          <p class="kpi-card__trend kpi-card__trend--up">↑ +0.32</p>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__icon kpi-card__icon--orange"><span class="material-symbols-rounded">trending_up</span></div>
+          <p class="kpi-card__label">Tỷ lệ hoàn thành</p>
+          <p class="kpi-card__value">88.2%</p>
+          <p class="kpi-card__trend kpi-card__trend--up">↑ +3.1%</p>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__icon kpi-card__icon--purple"><span class="material-symbols-rounded">person_check</span></div>
+          <p class="kpi-card__label">Người dùng hoạt động</p>
+          <p class="kpi-card__value">8.241</p>
+          <p class="kpi-card__trend kpi-card__trend--up">↑ 9.8%</p>
+        </div>
+      </div>
+
+      <!-- Charts row 1 -->
+      <div class="two-col-grid" style="margin-bottom:24px;">
+        <div class="card">
+          <div class="card-header">
+            <p class="card-title"><span class="icon material-symbols-rounded">show_chart</span> Xu hướng điểm số theo tuần</p>
+          </div>
+          <div class="card-body">
+            <div class="chart-container"><canvas id="trendChart"></canvas></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <p class="card-title"><span class="icon material-symbols-rounded">bar_chart</span> Phân bố điểm số</p>
+          </div>
+          <div class="card-body">
+            <div class="chart-container"><canvas id="distChart"></canvas></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts row 2 -->
+      <div class="three-col-grid" style="margin-bottom:28px;">
+        <div class="card">
+          <div class="card-header">
+            <p class="card-title"><span class="icon material-symbols-rounded">subject</span> Điểm TB theo môn</p>
+          </div>
+          <div class="card-body">
+            <div class="chart-container" style="height:200px;"><canvas id="subjectAvgChart"></canvas></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <p class="card-title"><span class="icon material-symbols-rounded">access_time</span> Giờ cao điểm thi</p>
+          </div>
+          <div class="card-body">
+            <div class="chart-container" style="height:200px;"><canvas id="peakChart"></canvas></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <p class="card-title"><span class="icon material-symbols-rounded">donut_large</span> Tỷ lệ đậu/rớt</p>
+          </div>
+          <div class="card-body">
+            <div style="display:flex;flex-direction:column;gap:16px;height:200px;justify-content:center;">
+              <div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+                  <span style="font-size:.85rem;font-weight:700;color:var(--green)">✓ Đậu</span>
+                  <span style="font-weight:900;font-size:.9rem">74.3%</span>
+                </div>
+                <div class="progress-track"><div class="progress-fill progress-fill--green" style="width:74.3%"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+                  <span style="font-size:.85rem;font-weight:700;color:#EF4444">✗ Rớt</span>
+                  <span style="font-weight:900;font-size:.9rem">25.7%</span>
+                </div>
+                <div class="progress-track"><div class="progress-fill" style="width:25.7%;background:#EF4444"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+                  <span style="font-size:.85rem;font-weight:700;color:var(--orange)">⚡ Bỏ thi</span>
+                  <span style="font-weight:900;font-size:.9rem">11.8%</span>
+                </div>
+                <div class="progress-track"><div class="progress-fill" style="width:11.8%;background:var(--orange)"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top performers table -->
+      <div class="card">
+        <div class="card-header">
+          <p class="card-title"><span class="icon material-symbols-rounded">emoji_events</span> Bảng xếp hạng học sinh xuất sắc</p>
+          <a href="admin-user-manager.html" class="btn btn-outline btn-sm">Xem tất cả</a>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>#</th><th>Học sinh</th><th>Số đề đã làm</th><th>Điểm TB</th><th>Điểm cao nhất</th><th>Tỷ lệ đậu</th><th>Thứ hạng</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong style="color:var(--yellow)">🥇 1</strong></td>
+                <td style="font-weight:800">Trần Minh Khoa</td>
+                <td>48</td>
+                <td><strong style="color:var(--green)">9.4</strong></td>
+                <td>10.0</td>
+                <td><span class="badge badge--green">100%</span></td>
+                <td><span class="badge badge--red">Xuất sắc</span></td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--gray-500)">🥈 2</strong></td>
+                <td style="font-weight:800">Nguyễn Lan Anh</td>
+                <td>42</td>
+                <td><strong style="color:var(--green)">9.1</strong></td>
+                <td>10.0</td>
+                <td><span class="badge badge--green">98%</span></td>
+                <td><span class="badge badge--red">Xuất sắc</span></td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--orange)">🥉 3</strong></td>
+                <td style="font-weight:800">Phạm Bảo Long</td>
+                <td>39</td>
+                <td><strong style="color:var(--green)">8.8</strong></td>
+                <td>9.5</td>
+                <td><span class="badge badge--green">95%</span></td>
+                <td><span class="badge badge--blue">Giỏi</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<div id="sidebar-overlay" onclick="closeSidebar()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:199;"></div>
+
+<script src="assets/js/admin-statistics.js"></script>
+</body>
+</html>

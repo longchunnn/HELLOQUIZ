@@ -1,32 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <script type="text/javascript" src="assets/js/validation.js" defer></script>
+  <title>Đăng nhập — HelloQuizz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link rel="stylesheet" href="assets/css/auth.css"/>
 </head>
 <body>
-  <div class="wrapper">
-    <h1>Login</h1>
-    <p id="error-message"></p>
-    <form id="form">
-      <div>
-        <label for="email-input">
-          <span>@</span>
-        </label>
-        <input type="email" name="email" id="email-input" placeholder="Email">
+
+  <!-- Navbar -->
+  <nav class="auth-nav">
+    <div class="auth-nav__inner">
+      <a href="landing.html" class="auth-nav__logo">
+        <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="40" height="40" rx="10" fill="#DC2626"/>
+          <rect x="7" y="9" width="18" height="22" rx="4" fill="white"/>
+          <rect x="15" y="9" width="18" height="22" rx="4" fill="white" opacity="0.85"/>
+          <text x="20" y="26" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900" font-size="16" fill="#DC2626">?</text>
+        </svg>
+        <span class="logo-wordmark">Hello<span class="logo-text">Quizz</span></span>
+      </a>
+      <div class="auth-nav__links">
+        <a href="landing.html" class="btn-ghost">← Trang chủ</a>
+        <a href="signup.html" class="btn-auth-primary">Đăng ký miễn phí</a>
       </div>
-      <div>
-        <label for="password-input">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm240-200q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80Z"/></svg>
-        </label>
-        <input type="password" name="password" id="password-input" placeholder="Password">
+    </div>
+  </nav>
+
+  <!-- Auth Page -->
+  <main class="auth-page">
+    <div class="auth-card">
+      <!-- Card Header -->
+      <div class="auth-card__header">
+        <h1 class="auth-card__title">Chào mừng trở lại! 👋</h1>
+        <p class="auth-card__subtitle">Đăng nhập để tiếp tục luyện thi</p>
       </div>
-      <button type="submit">Login</button>
-    </form>
-    <p>New here? <a href="signup.html">Create an Account</a></p>
-  </div>
+
+      <!-- Error message -->
+      <div id="error-message"></div>
+
+      <!-- Form -->
+      <form id="login-form" novalidate>
+
+        <div class="form-group">
+          <label class="form-label" for="email-input">Email</label>
+          <div class="form-input-wrap">
+            <span class="form-input-icon">
+              <span class="material-symbols-rounded" style="font-size:1.1rem">email</span>
+            </span>
+            <input
+              type="email"
+              id="email-input"
+              name="email"
+              class="form-input"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            />
+          </div>
+          <div class="form-error" id="email-error">Vui lòng nhập email hợp lệ.</div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password-input">Mật khẩu</label>
+          <div class="form-input-wrap">
+            <span class="form-input-icon">
+              <span class="material-symbols-rounded" style="font-size:1.1rem">lock</span>
+            </span>
+            <input
+              type="password"
+              id="password-input"
+              name="password"
+              class="form-input"
+              placeholder="Nhập mật khẩu"
+              autocomplete="current-password"
+              required
+            />
+            <button type="button" class="form-input-toggle" id="toggle-password" aria-label="Hiện/ẩn mật khẩu">
+              <span class="material-symbols-rounded" style="font-size:1.1rem">visibility</span>
+            </button>
+          </div>
+          <div class="form-error" id="password-error">Vui lòng nhập mật khẩu.</div>
+        </div>
+
+        <div class="form-row">
+          <label class="form-checkbox">
+            <input type="checkbox" name="remember"/>
+            Nhớ đăng nhập
+          </label>
+          <a href="#" class="form-link">Quên mật khẩu?</a>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          <span class="material-symbols-rounded" style="font-size:1.1rem">login</span>
+          Đăng nhập
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        Chưa có tài khoản? <a href="signup.html">Đăng ký ngay →</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="assets/js/login.js"></script>
 </body>
 </html>

@@ -205,6 +205,16 @@ ul { list-style: none; }
   color: var(--red);
 }
 .nav-cta { margin-left: 8px; }
+.nav-auth-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 8px;
+}
+.nav-login {
+  font-size: .9rem !important;
+  padding: 9px 18px !important;
+}
 .hamburger {
   display: none;
   flex-direction: column;
@@ -1025,7 +1035,7 @@ ul { list-style: none; }
 }
 @media (max-width: 768px) {
   .section { padding: 72px 0; }
-  .nav-links, .nav-cta { display: none; }
+  .nav-links, .nav-cta, .nav-auth-group { display: none; }
   .hamburger { display: flex; }
   .hero-grid { grid-template-columns: 1fr; gap: 48px; }
   .hero-visual { order: -1; padding: 24px 24px 64px 24px; }

@@ -1,0 +1,88 @@
+/* exam-result.css — Exam result page styles */
+
+/* Score hero */
+.result-hero {
+  background: linear-gradient(135deg, var(--red) 0%, #7F1D1D 100%);
+  border-radius: var(--radius-lg);
+  padding: 40px 36px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 36px;
+  align-items: center;
+  margin-bottom: 28px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.result-hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -40px;
+  width: 280px; height: 280px;
+  background: rgba(255,255,255,.06);
+  border-radius: 50%;
+}
+.score-circle-wrap { position: relative; width: 160px; height: 160px; flex-shrink: 0; }
+.score-circle-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.circle-track { fill: none; stroke: rgba(255,255,255,.2); stroke-width: 10; }
+.circle-fill {
+  fill: none; stroke: white; stroke-width: 10;
+  stroke-dasharray: 502;
+  stroke-dashoffset: 100;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.5s ease;
+}
+.score-overlay {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.score-big { font-size: 2.4rem; font-weight: 900; line-height: 1; }
+.score-label { font-size: .8rem; opacity: .8; font-weight: 700; }
+.result-info__title { font-size: 1.6rem; font-weight: 900; margin-bottom: 8px; }
+.result-info__desc { font-size: .9rem; opacity: .85; margin-bottom: 20px; }
+.result-badges { display: flex; flex-wrap: wrap; gap: 10px; }
+.result-badge {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,.15); border-radius: 99px;
+  padding: 6px 14px; font-size: .82rem; font-weight: 800;
+}
+
+/* Review section */
+.review-list { display: flex; flex-direction: column; gap: 16px; }
+.review-item {
+  background: var(--white); border-radius: var(--radius-md);
+  border: 1.5px solid var(--gray-200); padding: 22px 24px;
+}
+.review-item.correct { border-left: 4px solid var(--green); }
+.review-item.incorrect { border-left: 4px solid #EF4444; }
+.review-item__header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 14px; gap: 12px;
+}
+.review-item__q { font-size: .95rem; font-weight: 800; color: var(--dark); line-height: 1.5; flex: 1; }
+.review-item__options { display: flex; flex-direction: column; gap: 8px; }
+.review-opt {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; border-radius: var(--radius-sm);
+  font-size: .875rem; font-weight: 700; color: var(--gray-700);
+  background: var(--gray-50);
+}
+.review-opt.user-answer { background: #FEE2E2; color: #B91C1C; }
+.review-opt.correct-answer { background: var(--green-light); color: #15803D; }
+.review-opt.user-correct { background: var(--green-light); color: #15803D; }
+.opt-key {
+  width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .78rem; font-weight: 900; flex-shrink: 0;
+  background: var(--gray-200); color: var(--gray-600);
+}
+.review-opt.correct-answer .opt-key, .review-opt.user-correct .opt-key {
+  background: var(--green); color: white;
+}
+.review-opt.user-answer .opt-key { background: #EF4444; color: white; }
+
+@media (max-width: 640px) {
+  .result-hero { grid-template-columns: 1fr; text-align: center; }
+  .score-circle-wrap { margin: 0 auto; }
+  .result-badges { justify-content: center; }
+}

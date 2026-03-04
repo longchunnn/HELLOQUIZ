@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tổng quan — HelloQuizz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link rel="stylesheet" href="assets/css/app-shared.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="assets/css/dashboard.css"/>
+
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- ========= SIDEBAR ========= -->
+  <aside class="app-sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" rx="10" fill="#DC2626"/>
+        <rect x="7" y="9" width="18" height="22" rx="4" fill="white"/>
+        <rect x="15" y="9" width="18" height="22" rx="4" fill="white" opacity="0.85"/>
+        <text x="20" y="26" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900" font-size="16" fill="#DC2626">?</text>
+      </svg>
+      <span class="sidebar-brand__name">Hello<span>Quizz</span></span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <p class="sidebar-nav__section-title">Menu chính</p>
+      <a class="nav-link active" href="dashboard.html">
+        <span class="nav-icon material-symbols-rounded">dashboard</span> Tổng quan
+      </a>
+      <a class="nav-link" href="exam-list.html">
+        <span class="nav-icon material-symbols-rounded">quiz</span> Làm bài thi
+      </a>
+      <a class="nav-link" href="result-list.html">
+        <span class="nav-icon material-symbols-rounded">bar_chart</span> Kết quả
+        <span class="nav-badge">4</span>
+      </a>
+      <a class="nav-link" href="user-profile.html">
+        <span class="nav-icon material-symbols-rounded">person</span> Hồ sơ
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-user__avatar">N</div>
+        <div class="sidebar-user__info">
+          <p class="sidebar-user__name">Nguyễn Văn A</p>
+          <p class="sidebar-user__role">Học sinh</p>
+        </div>
+      </div>
+      <button class="sidebar-logout" onclick="window.location.href='landing.html'">
+        <span class="material-symbols-rounded" style="font-size:1rem">logout</span>
+        Đăng xuất
+      </button>
+    </div>
+  </aside>
+
+  <!-- ========= MAIN ========= -->
+  <main class="app-main">
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="app-header__left">
+        <button class="sidebar-toggle" id="sidebar-toggle">
+          <span class="material-symbols-rounded">menu</span>
+        </button>
+        <div>
+          <p class="app-header__title">Tổng quan</p>
+          <p class="app-header__subtitle">Thứ Tư, 05/03/2026</p>
+        </div>
+      </div>
+      <div class="app-header__right">
+        <div class="header-search">
+          <span class="material-symbols-rounded" style="font-size:1rem;color:var(--gray-400)">search</span>
+          <input type="text" placeholder="Tìm kiếm đề thi..."/>
+        </div>
+        <button class="header-icon-btn theme-btn" onclick="document.documentElement.classList.toggle('dark')" title="Chuyển theme">
+          <span class="material-symbols-rounded">dark_mode</span>
+        </button>
+        <div class="header-avatar" title="Nguyễn Văn A">N</div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="page-content">
+
+      <!-- Welcome Banner -->
+      <div class="welcome-card">
+        <p class="welcome-card__title">Chào buổi sáng, Nguyễn Văn A! 👋</p>
+        <p class="welcome-card__sub">Hôm nay bạn có 2 đề thi cần hoàn thành. Hãy tiếp tục cố gắng nhé!</p>
+        <a href="exam-taking.html" class="btn" style="background:white;color:var(--red);font-weight:800;border-radius:99px;padding:10px 22px;font-size:.9rem;display:inline-flex;align-items:center;gap:8px;">
+          <span class="material-symbols-rounded" style="font-size:1rem">play_arrow</span>
+          Làm bài ngay
+        </a>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="kpi-grid" style="margin-bottom:28px;">
+        <div class="kpi-card">
+          <div class="kpi-card__icon kpi-card__icon--blue">
+            <span class="material-symbols-rounded">emoji_events</span>
+          </div>
+          <p class="kpi-card__label">Xếp hạng</p>
+          <p class="kpi-card__value">#124</p>
+          <p class="kpi-card__trend kpi-card__trend--up">↑ Tăng 12 bậc</p>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__icon kpi-card__icon--green">
+            <span class="material-symbols-rounded">check_circle</span>
+          </div>
+          <p class="kpi-card__label">Đề đã làm</p>
+          <p class="kpi-card__value">32</p>
+          <p class="kpi-card__trend kpi-card__trend--up">↑ +5 tuần này</p>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__icon kpi-card__icon--orange">
+            <span class="material-symbols-rounded">pending_actions</span>
+          </div>
+          <p class="kpi-card__label">Chờ làm</p>
+          <p class="kpi-card__value">04</p>
+          <p class="kpi-card__trend" style="color:var(--orange);">Cần cố gắng!</p>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__icon kpi-card__icon--purple">
+            <span class="material-symbols-rounded">grade</span>
+          </div>
+          <p class="kpi-card__label">Điểm TB</p>
+          <p class="kpi-card__value">7.8</p>
+          <p class="kpi-card__trend kpi-card__trend--up">↑ +0.4 so với tháng trước</p>
+        </div>
+      </div>
+
+      <!-- Charts + Recent Results -->
+      <div class="two-col-grid" style="margin-bottom:28px;">
+        <!-- Chart -->
+        <div class="card">
+          <div class="card-header">
+            <p class="card-title"><span class="icon material-symbols-rounded">show_chart</span> Kết quả 7 ngày qua</p>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <canvas id="progressChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Score Distribution -->
+        <div class="card">
+          <div class="card-header">
+            <p class="card-title"><span class="icon material-symbols-rounded">donut_large</span> Phân bố điểm số</p>
+          </div>
+          <div class="card-body">
+            <div class="chart-container">
+              <canvas id="scoreChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Exams Table -->
+      <div class="card" style="margin-bottom:28px;">
+        <div class="card-header">
+          <p class="card-title"><span class="icon material-symbols-rounded">history</span> Kết quả gần đây</p>
+          <a href="exam-result.html" class="btn btn-outline btn-sm">Xem tất cả</a>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Tên đề thi</th>
+                <th>Môn học</th>
+                <th>Điểm số</th>
+                <th>Thời gian</th>
+                <th>Ngày thi</th>
+                <th>Trạng thái</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight:800;color:var(--dark)">Toán giải tích nâng cao</td>
+                <td>Toán học</td>
+                <td><strong style="color:var(--green)">9.0/10</strong></td>
+                <td>42:18 phút</td>
+                <td>03/03/2026</td>
+                <td><span class="badge badge--green">Xuất sắc</span></td>
+                <td><a href="exam-result.html" class="btn-icon"><span class="material-symbols-rounded" style="font-size:.9rem">open_in_new</span></a></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800;color:var(--dark)">Sinh học tế bào</td>
+                <td>Sinh học</td>
+                <td><strong style="color:var(--orange)">6.5/10</strong></td>
+                <td>38:55 phút</td>
+                <td>01/03/2026</td>
+                <td><span class="badge badge--orange">Trung bình</span></td>
+                <td><a href="exam-result.html" class="btn-icon"><span class="material-symbols-rounded" style="font-size:.9rem">open_in_new</span></a></td>
+              </tr>
+              <tr>
+                <td style="font-weight:800;color:var(--dark)">Lịch sử Việt Nam hiện đại</td>
+                <td>Lịch sử</td>
+                <td><strong style="color:var(--green)">8.0/10</strong></td>
+                <td>30:12 phút</td>
+                <td>28/02/2026</td>
+                <td><span class="badge badge--green">Tốt</span></td>
+                <td><a href="exam-result.html" class="btn-icon"><span class="material-symbols-rounded" style="font-size:.9rem">open_in_new</span></a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Available Exams -->
+      <div style="margin-bottom:8px;">
+        <div class="section-title-row">
+          <h2><span class="icon material-symbols-rounded">assignment</span> Đề thi chờ bạn</h2>
+          <a href="exam-taking.html" class="btn btn-primary btn-sm">Xem tất cả</a>
+        </div>
+        <div class="exam-grid">
+          <div class="exam-card" onclick="window.location.href='exam-taking.html'">
+            <p class="exam-card__subject">Toán học</p>
+            <p class="exam-card__title">Đại số tuyến tính — Đề thi giữa kỳ 2026</p>
+            <div class="exam-card__meta">
+              <span><span class="material-symbols-rounded" style="font-size:.85rem">timer</span> 45 phút</span>
+              <span><span class="material-symbols-rounded" style="font-size:.85rem">help</span> 30 câu</span>
+            </div>
+            <div class="exam-card__footer">
+              <span class="badge badge--blue">Dễ</span>
+              <a href="exam-taking.html" class="btn btn-primary btn-sm">Làm bài →</a>
+            </div>
+          </div>
+          <div class="exam-card" onclick="window.location.href='exam-taking.html'">
+            <p class="exam-card__subject">Vật lý</p>
+            <p class="exam-card__title">Cơ học lượng tử — Chương 3</p>
+            <div class="exam-card__meta">
+              <span><span class="material-symbols-rounded" style="font-size:.85rem">timer</span> 60 phút</span>
+              <span><span class="material-symbols-rounded" style="font-size:.85rem">help</span> 40 câu</span>
+            </div>
+            <div class="exam-card__footer">
+              <span class="badge badge--orange">Khó</span>
+              <a href="exam-taking.html" class="btn btn-primary btn-sm">Làm bài →</a>
+            </div>
+          </div>
+          <div class="exam-card" onclick="window.location.href='exam-taking.html'">
+            <p class="exam-card__subject">Tiếng Anh</p>
+            <p class="exam-card__title">TOEIC Reading — Mock Test 5</p>
+            <div class="exam-card__meta">
+              <span><span class="material-symbols-rounded" style="font-size:.85rem">timer</span> 75 phút</span>
+              <span><span class="material-symbols-rounded" style="font-size:.85rem">help</span> 50 câu</span>
+            </div>
+            <div class="exam-card__footer">
+              <span class="badge badge--purple">Nâng cao</span>
+              <a href="exam-taking.html" class="btn btn-primary btn-sm">Làm bài →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /page-content -->
+  </main>
+</div><!-- /app-layout -->
+
+<!-- Sidebar overlay (mobile) -->
+<div id="sidebar-overlay" onclick="closeSidebar()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:199;"></div>
+
+<script src="assets/js/dashboard.js"></script>
+</body>
+</html>

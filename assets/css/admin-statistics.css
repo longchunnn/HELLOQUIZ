@@ -1,0 +1,17 @@
+/* admin-statistics.css — Admin statistics page styles */
+
+.chart-container { height: 240px; position: relative; }
+.filter-bar {
+  display: flex; align-items: center; gap: 12px;
+  flex-wrap: wrap; margin-bottom: 24px;
+}
+.filter-bar select, .filter-bar input[type="date"] {
+  padding: 9px 14px;
+  border: 2px solid var(--gray-200); border-radius: var(--radius-sm);
+  font-family: 'Nunito', sans-serif; font-size: .875rem;
+  color: var(--dark); background: var(--white); outline: none;
+  transition: var(--transition); cursor: pointer;
+}
+.filter-bar select:focus, .filter-bar input:focus {
+  border-color: var(--red); box-shadow: 0 0 0 3px rgba(220,38,38,.1);
+}

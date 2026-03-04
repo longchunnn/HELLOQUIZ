@@ -1,0 +1,70 @@
+/* admin-profile.css — Admin profile page styles */
+
+.profile-hero {
+  background: linear-gradient(135deg, var(--dark) 0%, #1F2937 100%);
+  border-radius: var(--radius-lg); padding: 36px 32px;
+  display: flex; align-items: center; gap: 28px;
+  margin-bottom: 28px; color: white; position: relative; overflow: hidden;
+}
+.profile-hero::before {
+  content: ''; position: absolute; top: -50px; right: -50px;
+  width: 200px; height: 200px;
+  background: rgba(220,38,38,.15); border-radius: 50%;
+}
+.profile-hero__avatar {
+  width: 88px; height: 88px; border-radius: 50%;
+  background: var(--red); display: flex; align-items: center; justify-content: center;
+  font-size: 2.2rem; font-weight: 900; color: white;
+  border: 4px solid rgba(255,255,255,.25); flex-shrink: 0; position: relative; z-index: 1;
+}
+.profile-hero__info { flex: 1; position: relative; z-index: 1; }
+.profile-hero__name { font-size: 1.6rem; font-weight: 900; margin: 0 0 4px; }
+.profile-hero__role { font-size: .85rem; opacity: .75; margin: 0 0 12px; }
+.profile-hero__badges { display: flex; gap: 8px; flex-wrap: wrap; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(255,255,255,.12); padding: 5px 12px;
+  border-radius: 20px; font-size: .78rem; font-weight: 700;
+}
+
+.tab-nav { display: flex; gap: 4px; margin-bottom: 24px; border-bottom: 2px solid var(--gray-100); }
+.tab-btn {
+  background: none; border: none; padding: 12px 20px;
+  font-family: 'Nunito', sans-serif; font-size: .9rem; font-weight: 700;
+  color: var(--gray-500); cursor: pointer; transition: var(--transition);
+  border-bottom: 3px solid transparent; margin-bottom: -2px;
+}
+.tab-btn.active { color: var(--red); border-bottom-color: var(--red); }
+.tab-btn:hover:not(.active) { color: var(--dark); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.form-section { margin-bottom: 32px; }
+.form-section__title { font-size: .78rem; font-weight: 900; color: var(--gray-400); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--gray-100); }
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; font-size: .85rem; font-weight: 800; color: var(--gray-600); margin-bottom: 6px; }
+.form-control {
+  width: 100%; padding: 11px 15px;
+  border: 2px solid var(--gray-200); border-radius: var(--radius-sm);
+  font-family: 'Nunito', sans-serif; font-size: .9rem; color: var(--dark);
+  background: var(--white); outline: none; transition: var(--transition); box-sizing: border-box;
+}
+.form-control:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(220,38,38,.1); }
+.form-control:disabled { background: var(--gray-50); cursor: not-allowed; color: var(--gray-400); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+.activity-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--gray-100); }
+.activity-item:last-child { border-bottom: none; }
+.activity-icon { width: 36px; height: 36px; border-radius: 50%; background: var(--gray-100); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.activity-icon .material-symbols-rounded { font-size: 1rem; color: var(--gray-600); }
+.activity-body p { margin: 0; }
+.activity-body .activity-text { font-size: .875rem; font-weight: 700; color: var(--dark); }
+.activity-body .activity-time { font-size: .78rem; color: var(--gray-400); margin-top: 2px; }
+
+.danger-zone { border: 2px solid #FEE2E2; border-radius: var(--radius-md); padding: 24px; background: #FFF5F5; }
+.danger-zone__title { font-size: .88rem; font-weight: 900; color: #B91C1C; margin-bottom: 16px; display: flex; align-items: center; gap: 6px; }
+.danger-actions { display: flex; flex-direction: column; gap: 12px; }
+.danger-item { display: flex; justify-content: space-between; align-items: center; }
+.danger-item__info p { margin: 0; font-size: .875rem; }
+.danger-item__info .di-label { font-weight: 800; color: var(--dark); }
+.danger-item__info .di-desc { color: var(--gray-500); font-size: .8rem; margin-top: 2px; }
