@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Manage Students - Hello Quizz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/css/admin.css"/>
+    <style>
+        /* CSS bổ sung nhỏ cho phần User Avatar trong bảng */
+        .user-cell { display: flex; align-items: center; gap: 12px; }
+        .user-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; background-color: #f1f5f9; display: flex; align-items: center; justify-content: center; color: #64748b; font-weight: 600; font-size: 0.9rem; }
+        .user-info { display: flex; flex-direction: column; }
+        .user-name { font-weight: 600; color: #1e293b; font-size: 0.95rem; }
+        .user-email { color: #64748b; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+<div class="layout">
+
+    <aside class="sidebar">
+        <div class="sidebar__logo">
+            <div class="sidebar__logo-icon">
+                <span class="material-icons-round">quiz</span>
+            </div>
+            <h1 class="sidebar__logo-text"><span>Hello</span>Quizz</h1>
+        </div>
+
+        <nav class="sidebar__nav">
+            <a class="nav-item" href="admin.html">
+                <span class="material-icons-round">dashboard</span>
+                Tổng quan
+            </a>
+            <a class="nav-item" href="manage-exam.html">
+                <span class="material-icons-round">assignment</span>
+                Quản lý kì thi
+            </a>
+            <a class="nav-item nav-item--active" href="manage-students.html">
+                <span class="material-icons-round">people</span>
+                Quản lý người dùng
+            </a>
+            <a class="nav-item" href="admin-statistics.html">
+                <span class="material-icons-round">analytics</span>
+                Thống kê
+            </a>
+                        <a class="nav-item" href="admin-student-result.html">
+                <span class="material-icons-round">person_search</span>
+                Kết quả sinh viên
+            </a>
+            <a class="nav-item" href="#">
+                <span class="material-icons-round">settings</span>
+                Cài đặt
+            </a>
+        </nav>
+
+        <div class="sidebar__footer">
+            <button class="theme-toggle" onclick="document.documentElement.classList.toggle('dark')">
+                <span class="theme-toggle__label">
+                    <span class="material-icons-round">contrast</span>
+                    Theme Mode
+                </span>
+                <span class="toggle-track"> 
+                    <span class="toggle-thumb"></span>
+                </span>
+            </button>
+
+            <div class="sidebar__user">
+                <div class="sidebar__user-inner">
+                    <img class="sidebar__avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBHrisHkiV9iX1b0eVUOu_BTte5taJ71o5HwNusUtt4psnPHwI8sblvIDoFEguWoO6-x9rh7gxFhd2cqbw1ijieLe60b4nDCQIZCI5zQ7e3ma7GcqUXEsN_-xJKec1PExWe8P5LvpCt2oYLFmYBPDmTnn2OYpCufhEONl4ZZ1C_pf8BHtlVZRD02uOf1MgSQE7oNJjIdAEB8fqsnZyEFlJIMnKbM6mGTxISX9E3WDea8TXmLM6mzMYhBxBiAj0RA1RMjSe-IPWkI95" alt="Admin Profile"/>
+                    <div>
+                        <p class="sidebar__user-name">Alex Richards</p>
+                        <p class="sidebar__user-role">Head Administrator</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="page-header">
+            <div>
+                <h2 class="page-header__title">Quản lý người dùng</h2>
+                <p class="page-header__subtitle">Quản lý tài khoản và thông tin người dùng</p>
+            </div>
+            <div class="page-header__actions">
+                <div class="search-box">
+                    <span class="material-icons-round search-box__icon">Tìm kiếm</span>
+                    <input class="search-box__input" placeholder="Search by name or email..." type="text"/>
+                </div>
+                <button id = 'btnAddStudent' class="btn-primary">
+                    <span class="material-icons-round">person_add</span>
+                    Thêm Người dùng
+                </button>
+            </div>
+        </header>
+
+        <div class="stats-grid" style="margin-bottom: 24px;">
+            <div class="stat-card">
+                <div class="stat-card__icon stat-card__icon--blue">
+                    <span class="material-icons-round">groups</span>
+                </div>
+                <div>
+                    <p class="stat-card__label">Total Registered</p>
+                    <h3 class="stat-card__value">12,842</h3>
+                    <p class="stat-card__trend stat-card__trend--up">
+                        <span class="material-icons-round">arrow_upward</span> 150 new this week
+                    </p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__icon stat-card__icon--green">
+                    <span class="material-icons-round">how_to_reg</span>
+                </div>
+                <div>
+                    <p class="stat-card__label">Active Students</p>
+                    <h3 class="stat-card__value">8,430</h3>
+                    <p class="stat-card__trend stat-card__trend--neutral">Logged in last 30 days</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__icon stat-card__icon--amber">
+                    <span class="material-icons-round">military_tech</span>
+                </div>
+                <div>
+                    <p class="stat-card__label">Global Avg. Score</p>
+                    <h3 class="stat-card__value">78.4%</h3>
+                    <p class="stat-card__trend stat-card__trend--up">
+                        <span class="material-icons-round">arrow_upward</span> +2.1% improvement
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="card">
+                <div class="card__header">
+                    <h3 class="card__title">Danh sách người dùng</h3>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn-outline" style="padding: 6px 12px; font-size: 0.875rem;">
+                            <span class="material-icons-round" style="font-size: 1.1rem; margin-right: 4px;">filter_list</span> Filter
+                        </button>
+                        <button class="btn-outline" style="padding: 6px 12px; font-size: 0.875rem;">
+                            <span class="material-icons-round" style="font-size: 1.1rem; margin-right: 4px;">download</span> Export CSV
+                        </button>
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Người dùng</th>
+                                <th>Mã người dùng</th>
+                                <th>Kì thi đã làm</th>
+                                <th>Điểm trung bình</th>
+                                <th>Trạng thái</th>
+                                <th style="text-align:right">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar">EM</div>
+                                        <div class="user-info">
+                                            <span class="user-name">Emily Myers</span>
+                                            <span class="user-email">emily.m@student.edu</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>STU-2024-001</td>
+                                <td>12</td>
+                                <td><span style="color: #10b981; font-weight: 600;">92.5%</span></td>
+                                <td><span class="badge badge--live">Active</span></td>
+                                <td>
+                                    <div class="table__actions">
+                                        <button class="action-btn action-btn--edit" title="Edit User"><span class="material-icons-round" style="font-size:1rem">edit</span></button>
+                                        <button class="action-btn action-btn--delete" title="Suspend User"><span class="material-icons-round" style="font-size:1rem">block</span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <div class="user-avatar" style="background-color: #dbeafe; color: #1e40af;">JD</div>
+                                        <div class="user-info">
+                                            <span class="user-name">James Anderson</span>
+                                            <span class="user-email">j.anderson@student.edu</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>STU-2024-084</td>
+                                <td>8</td>
+                                <td><span style="color: #f59e0b; font-weight: 600;">74.0%</span></td>
+                                <td><span class="badge badge--live">Active</span></td>
+                                <td>
+                                    <div class="table__actions">
+                                        <button class="action-btn action-btn--edit"><span class="material-icons-round" style="font-size:1rem">edit</span></button>
+                                        <button class="action-btn action-btn--delete"><span class="material-icons-round" style="font-size:1rem">block</span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="user-cell">
+                                        <img src="https://i.pravatar.cc/150?img=32" alt="Avatar" class="user-avatar"/>
+                                        <div class="user-info">
+                                            <span class="user-name">Sarah Connor</span>
+                                            <span class="user-email">sarah.c@student.edu</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>STU-2023-412</td>
+                                <td>0</td>
+                                <td><span style="color: #64748b; font-weight: 600;">N/A</span></td>
+                                <td><span class="badge badge--ended">Inactive</span></td>
+                                <td>
+                                    <div class="table__actions">
+                                        <button class="action-btn action-btn--edit"><span class="material-icons-round" style="font-size:1rem">edit</span></button>
+                                        <button class="action-btn action-btn--delete"><span class="material-icons-round" style="font-size:1rem">block</span></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div style="padding: 16px 20px; border-top: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; color: #64748b; font-size: 0.875rem;">
+                    <span>Showing 1 to 3 of 12,842 students</span>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="btn-outline" style="padding: 6px 12px; font-size: 0.875rem;" disabled>Previous</button>
+                        <button class="btn-outline" style="padding: 6px 12px; font-size: 0.875rem;">Next</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</div>
+<script src="assets/js/admin.js"></script>
+<script>
+    document.getElementById('btnAddStudent').addEventListener('click', function() {
+        // Logic để mở form thêm người dùng mới
+        window.location.href = 'add-student.html';
+    });
+</script>
+</body>
+</html>
