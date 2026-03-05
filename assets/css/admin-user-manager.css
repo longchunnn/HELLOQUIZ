@@ -1,0 +1,49 @@
+/* admin-user-manager.css — Admin user manager page styles */
+
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,.5); z-index: 500;
+  justify-content: center; align-items: center;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--white); border-radius: var(--radius-lg);
+  padding: 32px; width: 90%; max-width: 520px;
+  max-height: 90vh; overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+}
+.modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+.modal-title { font-size: 1.15rem; font-weight: 900; color: var(--dark); }
+.modal-close { background: none; border: none; cursor: pointer; color: var(--gray-400); font-size: 1.4rem; line-height: 1; transition: var(--transition); padding: 4px; }
+.modal-close:hover { color: var(--dark); }
+.modal-footer { display: flex; gap: 12px; justify-content: flex-end; margin-top: 28px; }
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; font-size: .85rem; font-weight: 800; color: var(--gray-600); margin-bottom: 6px; }
+.form-control {
+  width: 100%; padding: 10px 14px;
+  border: 2px solid var(--gray-200); border-radius: var(--radius-sm);
+  font-family: 'Nunito', sans-serif; font-size: .9rem; color: var(--dark);
+  background: var(--white); outline: none; transition: var(--transition); box-sizing: border-box;
+}
+.form-control:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(220,38,38,.1); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+.toolbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+.search-input-wrap { position: relative; flex: 1; min-width: 200px; }
+.search-input-wrap .material-symbols-rounded { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--gray-400); font-size: 1.1rem; }
+.search-input { width: 100%; padding: 10px 14px 10px 38px; border: 2px solid var(--gray-200); border-radius: var(--radius-sm); font-family: 'Nunito', sans-serif; font-size: .875rem; color: var(--dark); background: var(--white); outline: none; transition: var(--transition); box-sizing: border-box; }
+.search-input:focus { border-color: var(--red); }
+.filter-select { padding: 10px 14px; border: 2px solid var(--gray-200); border-radius: var(--radius-sm); font-family: 'Nunito', sans-serif; font-size: .875rem; color: var(--dark); background: var(--white); outline: none; cursor: pointer; }
+.filter-select:focus { border-color: var(--red); }
+
+.action-btn { background: none; border: none; cursor: pointer; padding: 6px; border-radius: 6px; transition: var(--transition); color: var(--gray-500); }
+.action-btn:hover { background: var(--gray-100); }
+.action-btn.edit:hover { color: #3B82F6; background: #EFF6FF; }
+.action-btn.delete:hover { color: #EF4444; background: #FEF2F2; }
+.action-btn.ban:hover { color: #F97316; background: #FFF7ED; }
+
+.user-cell { display: flex; align-items: center; gap: 10px; }
+.user-avatar-sm { width: 34px; height: 34px; border-radius: 50%; background: var(--red); color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: .85rem; flex-shrink: 0; }
+.user-name-info p { margin: 0; }
+.user-name-info .name { font-size: .875rem; font-weight: 800; color: var(--dark); }
+.user-name-info .email { font-size: .78rem; color: var(--gray-500); }

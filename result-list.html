@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kết quả thi — HelloQuizz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link rel="stylesheet" href="assets/css/app-shared.css"/>
+  <link rel="stylesheet" href="assets/css/result-list.css"/>
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- ========= SIDEBAR ========= -->
+  <aside class="app-sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" rx="10" fill="#DC2626"/>
+        <rect x="7" y="9" width="18" height="22" rx="4" fill="white"/>
+        <rect x="15" y="9" width="18" height="22" rx="4" fill="white" opacity="0.85"/>
+        <text x="20" y="26" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900" font-size="16" fill="#DC2626">?</text>
+      </svg>
+      <span class="sidebar-brand__name">Hello<span>Quizz</span></span>
+    </div>
+    <nav class="sidebar-nav">
+      <p class="sidebar-nav__section-title">Menu chính</p>
+      <a class="nav-link" href="dashboard.html">
+        <span class="nav-icon material-symbols-rounded">dashboard</span> Tổng quan
+      </a>
+      <a class="nav-link" href="exam-list.html">
+        <span class="nav-icon material-symbols-rounded">quiz</span> Làm bài thi
+      </a>
+      <a class="nav-link active" href="result-list.html">
+        <span class="nav-icon material-symbols-rounded">bar_chart</span> Kết quả
+      </a>
+      <a class="nav-link" href="user-profile.html">
+        <span class="nav-icon material-symbols-rounded">person</span> Hồ sơ
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-user__avatar">N</div>
+        <div class="sidebar-user__info">
+          <p class="sidebar-user__name">Nguyễn Văn A</p>
+          <p class="sidebar-user__role">Học sinh</p>
+        </div>
+      </div>
+      <button class="sidebar-logout" onclick="window.location.href='landing.html'">
+        <span class="material-symbols-rounded" style="font-size:1rem">logout</span> Đăng xuất
+      </button>
+    </div>
+  </aside>
+
+  <!-- ========= MAIN ========= -->
+  <main class="app-main">
+    <header class="app-header">
+      <div class="app-header__left">
+        <button class="sidebar-toggle" id="sidebar-toggle">
+          <span class="material-symbols-rounded">menu</span>
+        </button>
+        <div>
+          <p class="app-header__title">Kết quả thi</p>
+          <p class="app-header__subtitle">Xem lại kết quả các bài thi đã làm</p>
+        </div>
+      </div>
+      <div class="app-header__right">
+        <button class="header-icon-btn theme-btn" onclick="document.documentElement.classList.toggle('dark')">
+          <span class="material-symbols-rounded">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="page-content">
+
+      <!-- KPI summary -->
+      <div class="kpi-grid" style="margin-bottom:24px;">
+        <div class="kpi-card">
+          <div class="kpi-card__icon kpi-card__icon--blue"><span class="material-symbols-rounded">assignment_turned_in</span></div>
+          <p class="kpi-card__label">Đề đã làm</p>
+          <p class="kpi-card__value">24</p>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__icon kpi-card__icon--green"><span class="material-symbols-rounded">grade</span></div>
+          <p class="kpi-card__label">Điểm trung bình</p>
+          <p class="kpi-card__value">7.8</p>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__icon kpi-card__icon--orange"><span class="material-symbols-rounded">emoji_events</span></div>
+          <p class="kpi-card__label">Điểm cao nhất</p>
+          <p class="kpi-card__value">9.5</p>
+        </div>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <div class="search-wrap">
+          <span class="material-symbols-rounded">search</span>
+          <input type="text" class="search-input" id="search-input" placeholder="Tìm kiếm đề thi..."/>
+        </div>
+      </div>
+
+      <!-- Result list -->
+      <div id="result-list"></div>
+
+    </div>
+  </main>
+</div>
+
+<div id="sidebar-overlay" onclick="closeSidebar()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:199;"></div>
+
+<!-- Detail modal -->
+<div class="modal-overlay" id="detail-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <p class="modal-title" id="modal-title">Tên đề thi</p>
+        <p class="modal-subtitle" id="modal-subtitle">Ngày thi</p>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-stats" id="modal-stats"></div>
+    <div class="modal-body">
+      <p style="font-size:.78rem;font-weight:900;color:var(--gray-400);text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;">Chi tiết câu hỏi</p>
+      <div class="qa-list" id="qa-list"></div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/result-list.js"></script>
+</body>
+</html>

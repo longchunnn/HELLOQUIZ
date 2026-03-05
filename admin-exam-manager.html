@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quản lý đề thi — HelloQuizz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link rel="stylesheet" href="assets/css/app-shared.css"/>
+  <link rel="stylesheet" href="assets/css/admin-exam-manager.css"/>
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- ========= ADMIN SIDEBAR ========= -->
+  <aside class="app-sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" rx="10" fill="#DC2626"/>
+        <rect x="7" y="9" width="18" height="22" rx="4" fill="white"/>
+        <rect x="15" y="9" width="18" height="22" rx="4" fill="white" opacity="0.85"/>
+        <text x="20" y="26" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900" font-size="16" fill="#DC2626">?</text>
+      </svg>
+      <span class="sidebar-brand__name">Hello<span>Quizz</span></span>
+    </div>
+    <nav class="sidebar-nav">
+      <p class="sidebar-nav__section-title">Quản trị</p>
+      <a class="nav-link" href="admin-dashboard.html">
+        <span class="nav-icon material-symbols-rounded">dashboard</span> Tổng quan
+      </a>
+      <a class="nav-link active" href="admin-exam-manager.html">
+        <span class="nav-icon material-symbols-rounded">assignment</span> Quản lý đề thi
+      </a>
+      <a class="nav-link" href="admin-user-manager.html">
+        <span class="nav-icon material-symbols-rounded">group</span> Quản lý người dùng
+      </a>
+      <a class="nav-link" href="admin-statistics.html">
+        <span class="nav-icon material-symbols-rounded">analytics</span> Thống kê
+      </a>
+      <a class="nav-link" href="admin-profile.html">
+        <span class="nav-icon material-symbols-rounded">manage_accounts</span> Hồ sơ Admin
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-user__avatar">A</div>
+        <div class="sidebar-user__info">
+          <p class="sidebar-user__name">Admin Chính</p>
+          <p class="sidebar-user__role">Quản trị viên</p>
+        </div>
+      </div>
+      <button class="sidebar-logout" onclick="window.location.href='landing.html'">
+        <span class="material-symbols-rounded" style="font-size:1rem">logout</span> Đăng xuất
+      </button>
+    </div>
+  </aside>
+
+  <!-- ========= MAIN ========= -->
+  <main class="app-main">
+    <header class="app-header">
+      <div class="app-header__left">
+        <button class="sidebar-toggle" id="sidebar-toggle">
+          <span class="material-symbols-rounded">menu</span>
+        </button>
+        <div>
+          <p class="app-header__title">Quản lý đề thi</p>
+          <p class="app-header__subtitle">Tạo, chỉnh sửa và quản lý ngân hàng đề thi</p>
+        </div>
+      </div>
+      <div class="app-header__right">
+        <button class="btn btn-primary" onclick="openModal()">
+          <span class="material-symbols-rounded" style="font-size:1rem">add</span> Tạo đề thi mới
+        </button>
+      </div>
+    </header>
+
+    <div class="page-content">
+
+      <!-- KPIs -->
+      <div class="kpi-grid" style="margin-bottom:28px;">
+        <div class="kpi-card">
+          <div class="kpi-card__icon kpi-card__icon--blue"><span class="material-symbols-rounded">assignment</span></div>
+          <p class="kpi-card__label">Tổng đề thi</p>
+          <p class="kpi-card__value">2.341</p>
+          <p class="kpi-card__trend kpi-card__trend--up">↑ +124 tháng này</p>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__icon kpi-card__icon--green"><span class="material-symbols-rounded">public</span></div>
+          <p class="kpi-card__label">Đã xuất bản</p>
+          <p class="kpi-card__value">1.820</p>
+          <p class="kpi-card__trend kpi-card__trend--up">77.7%</p>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__icon kpi-card__icon--orange"><span class="material-symbols-rounded">edit_note</span></div>
+          <p class="kpi-card__label">Đang soạn thảo</p>
+          <p class="kpi-card__value">321</p>
+          <p class="kpi-card__trend">13.7%</p>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-card__icon kpi-card__icon--purple"><span class="material-symbols-rounded">inventory_2</span></div>
+          <p class="kpi-card__label">Lưu trữ</p>
+          <p class="kpi-card__value">200</p>
+          <p class="kpi-card__trend">8.6%</p>
+        </div>
+      </div>
+
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <div class="search-input-wrap">
+          <span class="material-symbols-rounded">search</span>
+          <input type="text" id="exam-search-input" class="search-input" placeholder="Tìm theo tên đề thi, môn học..."/>
+        </div>
+        <select id="filter-subject" class="filter-select">
+          <option>Tất cả môn học</option>
+          <option>Toán học</option>
+          <option>Vật lý</option>
+          <option>Hóa học</option>
+          <option>Sinh học</option>
+          <option>Tiếng Anh</option>
+          <option>Lịch sử</option>
+          <option>Địa lý</option>
+        </select>
+        <select id="filter-status" class="filter-select">
+          <option>Tất cả trạng thái</option>
+          <option>Đã xuất bản</option>
+          <option>Nháp</option>
+          <option>Lưu trữ</option>
+        </select>
+        <select class="filter-select">
+          <option>Tất cả cấp độ</option>
+          <option>Dễ</option>
+          <option>Trung bình</option>
+          <option>Khó</option>
+        </select>
+      </div>
+
+      <!-- Table -->
+      <div class="card">
+        <div class="card-header">
+          <p class="card-title"><span class="icon material-symbols-rounded">assignment</span> Danh sách đề thi</p>
+          <span style="font-size:.82rem;color:var(--gray-500);">Hiển thị 1–10 / 2.341 đề</span>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th><input type="checkbox" style="accent-color:var(--red)"/></th>
+                <th>Tên đề thi</th>
+                <th>Môn học</th>
+                <th>Số câu</th>
+                <th>Thời gian</th>
+                <th>Cấp độ</th>
+                <th>Trạng thái</th>
+                <th>Lượt thi</th>
+                <th>Điểm TB</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody id="exam-table-body">
+              <tr data-subject="Toán học" data-status="Đã xuất bản">
+                <td><input type="checkbox" style="accent-color:var(--red)"/></td>
+                <td style="font-weight:800">Đề thi THPT 2025 - Toán</td>
+                <td>Toán học</td>
+                <td>50</td>
+                <td>90 phút</td>
+                <td><span class="badge badge--orange">Khó</span></td>
+                <td><span class="badge badge--green">Đã xuất bản</span></td>
+                <td>1.284</td>
+                <td>7.2</td>
+                <td>
+                  <button class="action-btn view" title="Xem"><span class="material-symbols-rounded" style="font-size:1.1rem">visibility</span></button>
+                  <button class="action-btn edit" title="Sửa" onclick="openModal()"><span class="material-symbols-rounded" style="font-size:1.1rem">edit</span></button>
+                  <button class="action-btn delete" title="Xóa" onclick="confirmDelete()"><span class="material-symbols-rounded" style="font-size:1.1rem">delete</span></button>
+                </td>
+              </tr>
+              <tr data-subject="Vật lý" data-status="Đã xuất bản">
+                <td><input type="checkbox" style="accent-color:var(--red)"/></td>
+                <td style="font-weight:800">Kiểm tra 15 phút - Vật lý</td>
+                <td>Vật lý</td>
+                <td>15</td>
+                <td>15 phút</td>
+                <td><span class="badge badge--blue">Trung bình</span></td>
+                <td><span class="badge badge--green">Đã xuất bản</span></td>
+                <td>842</td>
+                <td>6.8</td>
+                <td>
+                  <button class="action-btn view" title="Xem"><span class="material-symbols-rounded" style="font-size:1.1rem">visibility</span></button>
+                  <button class="action-btn edit" title="Sửa" onclick="openModal()"><span class="material-symbols-rounded" style="font-size:1.1rem">edit</span></button>
+                  <button class="action-btn delete" title="Xóa" onclick="confirmDelete()"><span class="material-symbols-rounded" style="font-size:1.1rem">delete</span></button>
+                </td>
+              </tr>
+              <tr data-subject="Hóa học" data-status="Nháp">
+                <td><input type="checkbox" style="accent-color:var(--red)"/></td>
+                <td style="font-weight:800">Ôn tập Hóa học kỳ 2</td>
+                <td>Hóa học</td>
+                <td>30</td>
+                <td>45 phút</td>
+                <td><span class="badge badge--blue">Trung bình</span></td>
+                <td><span class="badge badge--yellow">Nháp</span></td>
+                <td>0</td>
+                <td>—</td>
+                <td>
+                  <button class="action-btn view" title="Xem"><span class="material-symbols-rounded" style="font-size:1.1rem">visibility</span></button>
+                  <button class="action-btn edit" title="Sửa" onclick="openModal()"><span class="material-symbols-rounded" style="font-size:1.1rem">edit</span></button>
+                  <button class="action-btn delete" title="Xóa" onclick="confirmDelete()"><span class="material-symbols-rounded" style="font-size:1.1rem">delete</span></button>
+                </td>
+              </tr>
+              <tr data-subject="Tiếng Anh" data-status="Đã xuất bản">
+                <td><input type="checkbox" style="accent-color:var(--red)"/></td>
+                <td style="font-weight:800">Ngữ pháp Tiếng Anh cơ bản</td>
+                <td>Tiếng Anh</td>
+                <td>25</td>
+                <td>30 phút</td>
+                <td><span class="badge badge--green">Dễ</span></td>
+                <td><span class="badge badge--green">Đã xuất bản</span></td>
+                <td>2.103</td>
+                <td>8.1</td>
+                <td>
+                  <button class="action-btn view" title="Xem"><span class="material-symbols-rounded" style="font-size:1.1rem">visibility</span></button>
+                  <button class="action-btn edit" title="Sửa" onclick="openModal()"><span class="material-symbols-rounded" style="font-size:1.1rem">edit</span></button>
+                  <button class="action-btn delete" title="Xóa" onclick="confirmDelete()"><span class="material-symbols-rounded" style="font-size:1.1rem">delete</span></button>
+                </td>
+              </tr>
+              <tr data-subject="Sinh học" data-status="Lưu trữ">
+                <td><input type="checkbox" style="accent-color:var(--red)"/></td>
+                <td style="font-weight:800">Đề thi thử Sinh học quốc gia</td>
+                <td>Sinh học</td>
+                <td>40</td>
+                <td>60 phút</td>
+                <td><span class="badge badge--orange">Khó</span></td>
+                <td><span class="badge badge--gray">Lưu trữ</span></td>
+                <td>520</td>
+                <td>6.5</td>
+                <td>
+                  <button class="action-btn view" title="Xem"><span class="material-symbols-rounded" style="font-size:1.1rem">visibility</span></button>
+                  <button class="action-btn edit" title="Sửa" onclick="openModal()"><span class="material-symbols-rounded" style="font-size:1.1rem">edit</span></button>
+                  <button class="action-btn delete" title="Xóa" onclick="confirmDelete()"><span class="material-symbols-rounded" style="font-size:1.1rem">delete</span></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Pagination -->
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-top:1px solid var(--gray-100);">
+          <span style="font-size:.82rem;color:var(--gray-500);">Trang 1 / 235</span>
+          <div style="display:flex;gap:6px;">
+            <button class="btn btn-outline btn-sm" disabled>← Trước</button>
+            <button class="btn btn-primary btn-sm">1</button>
+            <button class="btn btn-outline btn-sm">2</button>
+            <button class="btn btn-outline btn-sm">3</button>
+            <button class="btn btn-outline btn-sm">Tiếp →</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- Sidebar overlay -->
+<div id="sidebar-overlay" onclick="closeSidebar()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:199;"></div>
+
+<!-- Create/Edit exam modal -->
+<div class="modal-overlay" id="exam-modal" style="align-items:flex-start;padding:24px 16px;overflow-y:auto;">
+  <div class="modal" style="max-width:700px;width:100%;margin:auto;">
+    <div class="modal-header">
+      <div>
+        <p class="modal-title" id="modal-heading">Tạo đề thi mới</p>
+        <p style="font-size:.8rem;color:var(--gray-500);margin-top:3px;">Điền thông tin và thêm câu hỏi cho đề thi</p>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+
+    <!-- Step tabs -->
+    <div style="display:flex;gap:0;border-bottom:2px solid var(--gray-100);margin:0 0 20px;">
+      <button class="step-tab active" id="tab-btn-1" onclick="switchStep(1)">
+        <span style="background:var(--red);color:white;border-radius:50%;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:900;margin-right:6px;">1</span>
+        Thông tin đề thi
+      </button>
+      <button class="step-tab" id="tab-btn-2" onclick="switchStep(2)">
+        <span style="background:var(--gray-300);color:white;border-radius:50%;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:900;margin-right:6px;" id="step2-badge">2</span>
+        Câu hỏi &amp; Đáp án
+      </button>
+    </div>
+
+    <!-- Step 1: Exam info -->
+    <div id="step-1">
+      <div class="form-group">
+        <label>Tên đề thi *</label>
+        <input type="text" class="form-control" id="exam-title-input" placeholder="Nhập tên đề thi..."/>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Môn học *</label>
+          <select class="form-control" id="exam-subject">
+            <option value="">-- Chọn môn --</option>
+            <option>Toán học</option><option>Vật lý</option><option>Hóa học</option>
+            <option>Sinh học</option><option>Tiếng Anh</option><option>Lịch sử</option><option>Địa lý</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Cấp độ</label>
+          <select class="form-control" id="exam-level">
+            <option>Dễ</option><option selected>Trung bình</option><option>Khó</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Thời gian làm bài (phút)</label>
+          <input type="number" class="form-control" id="exam-duration" placeholder="VD: 45" min="5" max="180"/>
+        </div>
+        <div class="form-group">
+          <label>Trạng thái</label>
+          <select class="form-control" id="exam-status">
+            <option>Nháp</option><option>Đã xuất bản</option><option>Lưu trữ</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Mô tả</label>
+        <textarea class="form-control" id="exam-desc" rows="3" placeholder="Mô tả ngắn về nội dung đề thi..." style="resize:vertical;"></textarea>
+      </div>
+      <div class="modal-footer" style="margin-top:16px;">
+        <button class="btn btn-outline" onclick="closeModal()">Hủy</button>
+        <button class="btn btn-primary" onclick="switchStep(2)">
+          Tiếp theo: Thêm câu hỏi <span class="material-symbols-rounded" style="font-size:.95rem">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 2: Questions -->
+    <div id="step-2" style="display:none;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <p style="font-size:.88rem;font-weight:800;color:var(--gray-600);">Danh sách câu hỏi (<span id="q-count">0</span> câu)</p>
+        <button class="btn btn-outline btn-sm" onclick="addQuestion()">
+          <span class="material-symbols-rounded" style="font-size:.9rem">add</span> Thêm câu hỏi
+        </button>
+      </div>
+
+      <div id="questions-container" style="display:flex;flex-direction:column;gap:16px;max-height:50vh;overflow-y:auto;padding-right:4px;"></div>
+
+      <div style="padding:16px;background:var(--gray-50);border:2px dashed var(--gray-200);border-radius:var(--radius-md);text-align:center;margin-top:12px;cursor:pointer;" onclick="addQuestion()">
+        <span class="material-symbols-rounded" style="font-size:1.4rem;color:var(--gray-400);">add_circle</span>
+        <p style="font-size:.85rem;font-weight:700;color:var(--gray-400);margin-top:4px;">Nhấn để thêm câu hỏi mới</p>
+      </div>
+
+      <div class="modal-footer" style="margin-top:20px;">
+        <button class="btn btn-outline" onclick="switchStep(1)">
+          <span class="material-symbols-rounded" style="font-size:.95rem">arrow_back</span> Quay lại
+        </button>
+        <button class="btn btn-primary" onclick="saveExam()">
+          <span class="material-symbols-rounded" style="font-size:.95rem">save</span> Lưu đề thi
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script src="assets/js/admin-exam-manager.js"></script>
+</body>
+</html>

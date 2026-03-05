@@ -1,0 +1,71 @@
+/* user-profile.css — User profile page styles */
+
+.profile-hero {
+  background: linear-gradient(135deg, var(--red) 0%, #7F1D1D 100%);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.profile-hero::before {
+  content: '';
+  position: absolute;
+  top: -50px; right: -30px;
+  width: 220px; height: 220px;
+  background: rgba(255,255,255,.07);
+  border-radius: 50%;
+}
+.profile-hero__avatar {
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  border: 4px solid rgba(255,255,255,.3);
+  background: rgba(255,255,255,.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.2rem; font-weight: 900;
+  flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
+}
+.profile-hero__avatar .avatar-edit {
+  position: absolute; bottom: 0; right: 0;
+  width: 26px; height: 26px;
+  background: white; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--red);
+}
+.profile-hero__name { font-size: 1.5rem; font-weight: 900; margin-bottom: 4px; }
+.profile-hero__email { font-size: .9rem; opacity: .8; margin-bottom: 12px; }
+.profile-hero__badges { display: flex; gap: 10px; flex-wrap: wrap; }
+.profile-badge {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,.15); border-radius: 99px;
+  padding: 4px 12px; font-size: .8rem; font-weight: 700;
+}
+.tab-bar {
+  display: flex; gap: 4px; background: var(--white);
+  border-radius: var(--radius-md); padding: 6px;
+  box-shadow: var(--shadow-sm); margin-bottom: 24px;
+  border: 1.5px solid var(--gray-200);
+}
+.tab-btn {
+  flex: 1; padding: 10px;
+  border-radius: var(--radius-sm);
+  border: none; background: transparent;
+  font-family: 'Nunito', sans-serif;
+  font-size: .875rem; font-weight: 700;
+  cursor: pointer; color: var(--gray-600);
+  transition: var(--transition);
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.tab-btn.active { background: var(--red); color: white; box-shadow: 0 4px 12px rgba(220,38,38,.3); }
+.tab-btn:hover:not(.active) { background: var(--gray-100); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.form-grid .full-width { grid-column: 1 / -1; }
+@media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } .profile-hero { flex-direction: column; text-align: center; } }
