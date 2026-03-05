@@ -11,12 +11,20 @@ function closeSidebar() { sidebar.classList.remove('open'); overlay.style.displa
 
 /* ===== SEARCH & FILTER ===== */
 function applyUserFilters() {
-  const q      = document.getElementById('user-search-input').value.toLowerCase();
-  const role   = document.getElementById('filter-role').value;
-  const status = document.getElementById('filter-status').value;
+  const searchInputEl = document.getElementById('user-search-input');
+  const roleEl        = document.getElementById('filter-role');
+  const statusEl      = document.getElementById('filter-status');
+
+  const q = (searchInputEl?.value || '').toLowerCase();
+
+  let role = roleEl ? roleEl.value : '';
+  if (role === 'Tất cả vai trò') role = '';
+
+  let status = statusEl ? statusEl.value : '';
+  if (status === 'Tất cả trạng thái') status = '';
 
   document.querySelectorAll('#user-tbody tr').forEach(row => {
-    const text       = row.textContent.toLowerCase();
+    const text        = row.textContent.toLowerCase();
     const matchQ      = !q      || text.includes(q);
     const matchRole   = !role   || row.dataset.role   === role;
     const matchStatus = !status || row.dataset.status === status;
@@ -24,9 +32,12 @@ function applyUserFilters() {
   });
 }
 
-document.getElementById('user-search-input').addEventListener('input', applyUserFilters);
-document.getElementById('filter-role').addEventListener('change', applyUserFilters);
-document.getElementById('filter-status').addEventListener('change', applyUserFilters);
+const userSearchInput = document.getElementById('user-search-input');
+if (userSearchInput) userSearchInput.addEventListener('input', applyUserFilters);
+const filterRole = document.getElementById('filter-role');
+if (filterRole) filterRole.addEventListener('change', applyUserFilters);
+const filterStatusUser = document.getElementById('filter-status');
+if (filterStatusUser) filterStatusUser.addEventListener('change', applyUserFilters);
 
 /* ===== MODAL ===== */
 function openModal() { document.getElementById('user-modal').classList.add('open'); }

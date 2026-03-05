@@ -11,9 +11,18 @@ function closeSidebar() { sidebar.classList.remove('open'); overlaySb.style.disp
 
 /* ===== SEARCH & FILTER ===== */
 function applyExamFilters() {
-  const q = (document.getElementById('exam-search-input').value || '').toLowerCase();
-  const subject = document.getElementById('filter-subject') ? document.getElementById('filter-subject').value : '';
-  const status  = document.getElementById('filter-status')  ? document.getElementById('filter-status').value  : '';
+  const searchInputEl = document.getElementById('exam-search-input');
+  const subjectEl     = document.getElementById('filter-subject');
+  const statusEl      = document.getElementById('filter-status');
+
+  const q = (searchInputEl?.value || '').toLowerCase();
+
+  let subject = subjectEl ? subjectEl.value : '';
+  if (subject === 'Tất cả môn học') subject = '';
+
+  let status = statusEl ? statusEl.value : '';
+  if (status === 'Tất cả trạng thái') status = '';
+
   document.querySelectorAll('#exam-table-body tr').forEach(row => {
     const text = row.textContent.toLowerCase();
     const matchQ       = !q       || text.includes(q);
