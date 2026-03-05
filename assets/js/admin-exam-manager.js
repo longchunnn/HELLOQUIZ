@@ -14,6 +14,7 @@ function applyExamFilters() {
   const searchInputEl = document.getElementById('exam-search-input');
   const subjectEl     = document.getElementById('filter-subject');
   const statusEl      = document.getElementById('filter-status');
+  const levelEl       = document.getElementById('filter-level');
 
   const q = (searchInputEl?.value || '').toLowerCase();
 
@@ -23,12 +24,19 @@ function applyExamFilters() {
   let status = statusEl ? statusEl.value : '';
   if (status === 'Tất cả trạng thái') status = '';
 
+  let level = levelEl ? levelEl.value : '';
+  if (level === 'Tất cả cấp độ') level = '';
+
   document.querySelectorAll('#exam-table-body tr').forEach(row => {
     const text = row.textContent.toLowerCase();
+    const levelText = (row.querySelector('td:nth-child(6) .badge')?.textContent || '').trim();
+
     const matchQ       = !q       || text.includes(q);
     const matchSubject = !subject || row.dataset.subject === subject;
     const matchStatus  = !status  || row.dataset.status  === status;
-    row.style.display = (matchQ && matchSubject && matchStatus) ? '' : 'none';
+    const matchLevel   = !level   || levelText === level;
+
+    row.style.display = (matchQ && matchSubject && matchStatus && matchLevel) ? '' : 'none';
   });
 }
 
@@ -40,6 +48,8 @@ const filterSubject = document.getElementById('filter-subject');
 if (filterSubject) filterSubject.addEventListener('change', applyExamFilters);
 const filterStatus = document.getElementById('filter-status');
 if (filterStatus) filterStatus.addEventListener('change', applyExamFilters);
+const filterLevel = document.getElementById('filter-level');
+if (filterLevel) filterLevel.addEventListener('change', applyExamFilters);
 
 /* ===== MODAL ===== */
 let questionCount = 0;
