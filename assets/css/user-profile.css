@@ -68,4 +68,64 @@
 .tab-panel.active { display: block; }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .form-grid .full-width { grid-column: 1 / -1; }
-@media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } .profile-hero { flex-direction: column; text-align: center; } }
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 768px) {
+  .profile-hero { 
+    padding: 26px; 
+    gap: 22px; 
+    flex-direction: row;
+  }
+  .profile-hero__avatar { width: 76px; height: 76px; font-size: 1.8rem; }
+  .profile-hero__name { font-size: 1.3rem; }
+  .profile-hero__email { font-size: .85rem; }
+  .profile-hero__badges { gap: 8px; }
+  .profile-badge { padding: 3px 10px; font-size: .75rem; }
+  .tab-bar { padding: 5px; gap: 3px; }
+  .tab-btn { padding: 9px 8px; font-size: .8rem; gap: 4px; }
+  .tab-btn .material-symbols-rounded { font-size: 1rem; }
+  .form-grid { gap: 16px; }
+}
+
+@media (max-width: 600px) { 
+  .form-grid { grid-template-columns: 1fr; } 
+  .profile-hero { 
+    flex-direction: column; 
+    text-align: center;
+    padding: 24px 20px;
+  }
+  .profile-hero__badges { justify-content: center; }
+  .tab-bar { flex-wrap: wrap; }
+  .tab-btn { min-width: calc(50% - 4px); }
+}
+
+@media (max-width: 480px) {
+  .profile-hero { 
+    padding: 20px 16px; 
+    margin-bottom: 20px;
+    border-radius: var(--radius-md);
+  }
+  .profile-hero__avatar { 
+    width: 68px; 
+    height: 68px; 
+    font-size: 1.6rem;
+    border-width: 3px;
+  }
+  .profile-hero__avatar .avatar-edit { width: 22px; height: 22px; }
+  .profile-hero__name { font-size: 1.2rem; }
+  .profile-hero__email { font-size: .8rem; margin-bottom: 10px; }
+  .profile-badge { padding: 3px 8px; font-size: .7rem; gap: 4px; }
+  .tab-bar { 
+    padding: 4px; 
+    margin-bottom: 18px;
+    border-radius: var(--radius-sm);
+  }
+  .tab-btn { 
+    padding: 8px 6px; 
+    font-size: .75rem;
+    border-radius: 6px;
+  }
+  .form-grid { gap: 14px; }
+}

@@ -1027,28 +1027,101 @@ ul { list-style: none; }
 /* ============================================================
    RESPONSIVE
 ============================================================ */
+@media (max-width: 1200px) {
+  .container { padding: 0 20px; }
+  .hero-grid { gap: 40px; }
+  .hero-visual { padding: 24px 32px 68px; }
+}
+
 @media (max-width: 1024px) {
   .features-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; row-gap: 36px; }
   .faq-layout { grid-template-columns: 1fr; gap: 36px; }
   .faq-aside { position: static; }
+  .hero-title { font-size: clamp(2rem, 4.5vw, 3.2rem); }
+  .hero-desc { font-size: 1rem; }
+  .quiz-card-mockup { padding: 22px; }
 }
+
 @media (max-width: 768px) {
-  .section { padding: 72px 0; }
+  .section { padding: 64px 0; }
+  .container { padding: 0 16px; }
   .nav-links, .nav-cta, .nav-auth-group { display: none; }
   .hamburger { display: flex; }
-  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-  .hero-visual { order: -1; padding: 24px 24px 64px 24px; }
-  .hero-title { font-size: 2.2rem; }
-  .features-grid { grid-template-columns: 1fr; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .navbar-inner { height: 60px; }
+  #hero { padding-top: 120px; padding-bottom: 60px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+  .hero-visual { order: -1; padding: 16px 16px 48px 16px; }
+  .hero-title { font-size: 2rem; margin-bottom: 16px; }
+  .hero-desc { font-size: .95rem; margin-bottom: 28px; }
+  .hero-badge { font-size: .78rem; padding: 6px 12px; margin-bottom: 20px; }
+  .hero-actions { gap: 12px; }
+  .hero-actions .btn { font-size: .95rem; padding: 14px 28px; }
+  .hero-trust { margin-top: 28px; flex-wrap: wrap; }
+  .features-grid { grid-template-columns: 1fr; gap: 16px; }
+  .feature-card { padding: 24px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .stat-card { padding: 24px 16px; }
+  .stat-num { font-size: 2rem; }
   .testimonials-grid { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; }
-  .footer-bottom { flex-direction: column; text-align: center; }
+  .testimonial-card { padding: 24px; }
+  .section-title { font-size: 1.6rem; }
+  .section-desc { font-size: .95rem; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-bottom { flex-direction: column; text-align: center; gap: 16px; }
+  .faq-item__q { font-size: .9rem; padding: 16px; }
+  .faq-item__a { padding: 0 16px 16px; font-size: .875rem; }
+  .cta-section { padding: 48px 24px; border-radius: var(--radius-md); }
+  .cta-title { font-size: 1.6rem; }
+  .cta-desc { font-size: .95rem; }
 }
+
+@media (max-width: 576px) {
+  .section { padding: 48px 0; }
+  #hero { padding-top: 100px; padding-bottom: 48px; }
+  .hero-title { font-size: 1.75rem; line-height: 1.2; }
+  .hero-desc { font-size: .9rem; max-width: none; }
+  .hero-visual { padding: 12px 12px 40px; }
+  .quiz-card-mockup { padding: 18px; border-radius: var(--radius-md); }
+  .quiz-card-title { font-size: .85rem; }
+  .logo { font-size: 1.2rem; }
+  .logo-icon { width: 34px; height: 34px; font-size: 1rem; }
+  .logo-wordmark { font-size: 1.15rem; }
+  .stat-num { font-size: 1.75rem; }
+  .stat-label { font-size: .8rem; }
+  .btn { padding: 12px 24px; font-size: .9rem; }
+  .feature-card__title { font-size: 1rem; }
+}
+
 @media (max-width: 480px) {
+  .container { padding: 0 12px; }
+  .navbar-inner { height: 56px; }
   .hero-actions { flex-direction: column; align-items: stretch; }
-  .hero-actions .btn { justify-content: center; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .subjects-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-actions .btn { justify-content: center; width: 100%; }
+  .hero-trust { justify-content: center; text-align: center; }
+  .hero-avatars span { width: 32px; height: 32px; font-size: .7rem; }
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stat-card { padding: 20px 12px; }
+  .subjects-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .subject-card { padding: 20px 12px; }
+  .subject-card__name { font-size: .8rem; }
+  .section-title { font-size: 1.4rem; }
+  .section-tag { font-size: .7rem; padding: 5px 10px; }
+  .feature-card { padding: 20px; }
+  .feature-icon { width: 44px; height: 44px; }
+  .cta-section { padding: 36px 16px; margin: 0 -12px; border-radius: 0; }
+  .cta-title { font-size: 1.4rem; }
+  .cta-actions { flex-direction: column; gap: 10px; }
+  .cta-actions .btn { width: 100%; justify-content: center; }
+  .footer { padding: 40px 0 24px; }
+  .footer-brand { margin-bottom: 20px; }
+  .footer-desc { font-size: .85rem; }
+}
+
+@media (max-width: 360px) {
+  .hero-title { font-size: 1.5rem; }
+  .hero-desc { font-size: .85rem; }
+  .hero-actions .btn { padding: 12px 20px; font-size: .85rem; }
+  .section-title { font-size: 1.25rem; }
+  .stat-num { font-size: 1.5rem; }
 }

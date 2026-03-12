@@ -102,3 +102,45 @@
   display: flex; align-items: center; gap: 8px;
 }
 .section-title-row h2 .icon { color: var(--red); }
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 1024px) {
+  .exam-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+  .welcome-card { padding: 24px; }
+  .welcome-card__title { font-size: 1.3rem; }
+}
+
+@media (max-width: 768px) {
+  .exam-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+  .welcome-card { 
+    padding: 20px; 
+    margin-bottom: 20px;
+    border-radius: var(--radius-md);
+  }
+  .welcome-card__title { font-size: 1.2rem; }
+  .welcome-card__sub { font-size: .85rem; margin-bottom: 16px; }
+  .exam-card { padding: 16px; }
+  .exam-card__title { font-size: .9rem; }
+  .exam-card__meta { gap: 12px; font-size: .75rem; }
+  .section-title-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .section-title-row h2 { font-size: .95rem; }
+  .chart-container { height: 180px; }
+}
+
+@media (max-width: 576px) {
+  .exam-grid { grid-template-columns: 1fr; gap: 12px; }
+  .welcome-card { padding: 18px; }
+  .welcome-card__title { font-size: 1.1rem; }
+  .welcome-card__sub { font-size: .8rem; }
+  .exam-card { padding: 14px; }
+  .exam-card__subject { font-size: .68rem; }
+  .exam-card__title { font-size: .88rem; margin-bottom: 10px; }
+  .exam-card__footer { margin-top: 12px; }
+}
+
+@media (max-width: 480px) {
+  .welcome-card::before, .welcome-card::after { display: none; }
+  .chart-container { height: 160px; }
+}

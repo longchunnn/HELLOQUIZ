@@ -47,3 +47,37 @@
 .user-name-info p { margin: 0; }
 .user-name-info .name { font-size: .875rem; font-weight: 800; color: var(--dark); }
 .user-name-info .email { font-size: .78rem; color: var(--gray-500); }
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 768px) {
+  .modal { padding: 24px; max-width: 95%; }
+  .modal-header { margin-bottom: 20px; }
+  .modal-title { font-size: 1.05rem; }
+  .form-row { grid-template-columns: 1fr; gap: 14px; }
+  .modal-footer { flex-direction: column-reverse; gap: 10px; }
+  .modal-footer .btn { width: 100%; justify-content: center; }
+  .toolbar { gap: 10px; }
+  .search-input-wrap { min-width: 100%; order: -1; }
+  .filter-select { flex: 1; }
+  .user-cell { gap: 8px; }
+  .user-avatar-sm { width: 30px; height: 30px; font-size: .75rem; }
+  .user-name-info .name { font-size: .82rem; }
+  .user-name-info .email { font-size: .72rem; }
+}
+
+@media (max-width: 576px) {
+  .modal { padding: 20px 16px; border-radius: var(--radius-md); }
+  .form-control { padding: 9px 12px; font-size: .85rem; }
+  .form-group label { font-size: .8rem; }
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .search-input-wrap, .filter-select { min-width: auto; width: 100%; }
+  .action-btn { padding: 5px; }
+}
+
+@media (max-width: 480px) {
+  .modal { padding: 16px 12px; }
+  .modal-title { font-size: .95rem; }
+  .user-avatar-sm { width: 28px; height: 28px; font-size: .7rem; }
+}

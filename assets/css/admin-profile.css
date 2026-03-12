@@ -68,3 +68,52 @@
 .danger-item__info p { margin: 0; font-size: .875rem; }
 .danger-item__info .di-label { font-weight: 800; color: var(--dark); }
 .danger-item__info .di-desc { color: var(--gray-500); font-size: .8rem; margin-top: 2px; }
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 768px) {
+  .profile-hero { 
+    padding: 28px 24px; 
+    flex-direction: column; 
+    text-align: center;
+    gap: 20px;
+  }
+  .profile-hero__avatar { width: 76px; height: 76px; font-size: 1.8rem; }
+  .profile-hero__name { font-size: 1.35rem; }
+  .profile-hero__badges { justify-content: center; }
+  .tab-nav { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tab-btn { padding: 10px 16px; font-size: .82rem; white-space: nowrap; }
+  .form-row { grid-template-columns: 1fr; gap: 16px; }
+  .activity-item { gap: 12px; padding: 12px 0; }
+  .activity-icon { width: 32px; height: 32px; }
+  .activity-body .activity-text { font-size: .82rem; }
+  .danger-zone { padding: 20px; }
+  .danger-item { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .danger-item .btn { width: 100%; justify-content: center; }
+}
+
+@media (max-width: 576px) {
+  .profile-hero { padding: 24px 18px; }
+  .profile-hero__avatar { width: 68px; height: 68px; font-size: 1.6rem; border-width: 3px; }
+  .profile-hero__name { font-size: 1.2rem; }
+  .profile-hero__role { font-size: .8rem; margin-bottom: 10px; }
+  .hero-badge { padding: 4px 10px; font-size: .72rem; }
+  .tab-nav { gap: 0; }
+  .tab-btn { padding: 10px 12px; font-size: .78rem; }
+  .form-section__title { font-size: .72rem; }
+  .form-group label { font-size: .8rem; }
+  .form-control { padding: 10px 12px; font-size: .85rem; }
+  .danger-zone { padding: 16px; }
+  .danger-zone__title { font-size: .82rem; }
+  .danger-item__info .di-label { font-size: .82rem; }
+  .danger-item__info .di-desc { font-size: .75rem; }
+}
+
+@media (max-width: 480px) {
+  .profile-hero { padding: 20px 14px; border-radius: var(--radius-sm); }
+  .profile-hero__avatar { width: 60px; height: 60px; font-size: 1.4rem; }
+  .profile-hero__name { font-size: 1.1rem; }
+  .activity-icon { width: 28px; height: 28px; }
+  .activity-icon .material-symbols-rounded { font-size: .9rem; }
+}
